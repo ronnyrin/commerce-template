@@ -9,7 +9,6 @@ const fetcher: Fetcher = async ({
   query,
 }) => {
   const { locale, ...vars } = variables ?? {}
-  console.log('token', API_TOKEN, url)
   return handleFetchResponse(
     await fetch(url, {
       method,
