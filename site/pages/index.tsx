@@ -45,8 +45,8 @@ export default function Home({
             key={product.id}
             product={product}
             imgProps={{
-              width: i === 0 ? 1080 : 540,
-              height: i === 0 ? 1080 : 540,
+              width: i === 0 ? 1080 : 340,
+              height: i === 0 ? 1080 : 340,
               priority: true,
             }}
           />
