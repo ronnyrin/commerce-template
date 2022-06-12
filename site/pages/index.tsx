@@ -3,9 +3,8 @@ import { Layout } from '@components/common'
 import { ProductCard } from '@components/product'
 import { Grid } from '@components/ui'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-import { API_TOKEN, API_URL } from '@vercel/commerce-shopify/dist/const'
 
-export async function getStaticProps({
+export async function getServerSideProps({
   preview,
   locale,
   locales,
@@ -26,20 +25,18 @@ export async function getStaticProps({
 
   return {
     props: {
-      API_TOKEN,
-      API_URL,
       products,
       categories,
       brands,
       pages,
     },
-    revalidate: 60,
+    // revalidate: 60,
   }
 }
 
 export default function Home({
   products,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
+}: InferGetStaticPropsType<typeof getServerSideProps>) {
   return (
     <>
       <Grid variant="filled">
