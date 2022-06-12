@@ -4,7 +4,7 @@ import { ProductCard } from '@components/product'
 import { Grid } from '@components/ui'
 import type { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 
-export async function getServerSideProps({
+export async function getStaticProps({
   preview,
   locale,
   locales,
@@ -30,13 +30,13 @@ export async function getServerSideProps({
       brands,
       pages,
     },
-    // revalidate: 60,
+    revalidate: 60,
   }
 }
 
 export default function Home({
   products,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Grid variant="filled">
