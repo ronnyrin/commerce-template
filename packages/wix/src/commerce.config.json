@@ -1,0 +1,7 @@
+{
+  "provider": "wix",
+  "features": {
+    "wishlist": false,
+    "customerAuth": true
+  }
+}

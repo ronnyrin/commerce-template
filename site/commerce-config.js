@@ -13,6 +13,7 @@ const PROVIDERS = [
   '@vercel/commerce-bigcommerce',
   '@vercel/commerce-saleor',
   '@vercel/commerce-shopify',
+  '@vercel/commerce-wix',
   '@vercel/commerce-swell',
   '@vercel/commerce-vendure',
   '@vercel/commerce-ordercloud',
