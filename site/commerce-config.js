@@ -41,7 +41,7 @@ function withCommerceConfig(nextConfig = {}) {
     { commerce: { provider: getProviderName() } },
     nextConfig
   )
-  console.log(getProviderName())
+
   const { commerce } = config
   const { provider } = commerce
 
