@@ -24,7 +24,16 @@ const PROVIDERS = [
 ]
 
 function getProviderName() {
-  return '@vercel/commerce-wix'
+  return (
+    process.env.COMMERCE_PROVIDER ||
+    (process.env.BIGCOMMERCE_STOREFRONT_API_URL
+      ? '@vercel/commerce-bigcommerce'
+      : process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
+      ? '@vercel/commerce-shopify'
+      : process.env.NEXT_PUBLIC_SWELL_STORE_ID
+      ? '@vercel/commerce-swell'
+      : '@vercel/commerce-local')
+  )
 }
 
 function withCommerceConfig(nextConfig = {}) {
