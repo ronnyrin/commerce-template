@@ -17,6 +17,7 @@ const fetcher: any = async ({
       method,
       ...(variables && {body: variables}),
       headers: {
+        'origin': 'ronny-wix-headless.com',
         ...(shouldAdd && {'Authorization': API_TOKEN!}),
         'Content-Type': 'application/json',
       },
