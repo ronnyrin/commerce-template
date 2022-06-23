@@ -12,6 +12,11 @@ export const cartCreate = async (
   fetcher: <T = any, B = Body>(options: FetcherOptions<B>) => Promise<T>,
   lineItems: any
 ): Promise<any> => {
+  const res = await fetcher({
+    method: 'POST',
+    url: 'v1/meta-site/session-token',
+  });
+  console.log(res)
   const { cart } = await fetcher({
     method: 'POST',
     url: 'ecom/v1/carts',
