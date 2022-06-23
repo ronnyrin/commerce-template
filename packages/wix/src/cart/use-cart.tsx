@@ -13,6 +13,12 @@ export default useCommerceCart as UseCart<typeof handler>
 export const handler: any = {
   async fetcher({ input: { cartId }, options, fetch }: any) {
     // if (cartId) {
+    const res = await fetch({
+      ...options,
+      method: 'POST',
+      url: 'v1/meta-site/session-token',
+    });
+    console.log(res)
     const { cart } = await fetch({
       ...options,
       url: 'ecom/v1/carts/current',
