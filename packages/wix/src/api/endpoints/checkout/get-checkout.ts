@@ -1,5 +1,5 @@
 import {
-  SHOPIFY_CHECKOUT_ID_COOKIE,
+  WIX_CART_ID_COOKIE,
   WIX_CHECKOUT_URL_COOKIE,
   WIX_CUSTOMER_TOKEN_COOKIE,
 } from '../../../const'
@@ -19,7 +19,7 @@ const getCheckout: CheckoutEndpoint['handlers']['getCheckout'] = async ({
     try {
       await config.fetch(associateCustomerWithCheckoutMutation, {
         variables: {
-          checkoutId: cookies[SHOPIFY_CHECKOUT_ID_COOKIE],
+          checkoutId: cookies[WIX_CART_ID_COOKIE],
           customerAccessToken: cookies[WIX_CUSTOMER_TOKEN_COOKIE],
         },
       })

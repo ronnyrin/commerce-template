@@ -1,18 +1,16 @@
 import type { Category } from '../types/site'
 import { WixConfig } from '../api'
-import { CollectionEdge } from '../../schema'
 import { normalizeCategory } from './normalize'
-import getSiteCollectionsQuery from './queries/get-all-collections-query'
 
 const getCategories = async ({
   fetcher,
   locale,
 }: WixConfig): Promise<Category[]> => {
-  const { data } = await fetcher({})
+  const { collections } = await fetcher({url: 'stores/v1/collections/query', method: 'POST'})
 
   return (
-    data.collections?.edges?.map(({ node }: CollectionEdge) =>
-      normalizeCategory(node)
+    collections?.filter((c: any) => c.id !== '00000000-000000-000000-000000000001').map((collection: any) =>
+      normalizeCategory(collection)
     ) ?? []
   )
 }

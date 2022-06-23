@@ -1,32 +1,17 @@
 import type {
   OperationContext,
-  OperationOptions,
 } from '@vercel/commerce/api/operations'
 import { GetSiteInfoQueryVariables } from '../../../schema'
 import type { WixConfig, Provider } from '..'
 import { GetSiteInfoOperation } from '../../types/site'
 
-import { getCategories, getBrands, getSiteInfoQuery } from '../../utils'
+import { getCategories, getBrands } from '../../utils'
 
 export default function getSiteInfoOperation({
   commerce,
 }: OperationContext<Provider>) {
-  async function getSiteInfo<T extends GetSiteInfoOperation>(opts?: {
-    config?: Partial<WixConfig>
-    preview?: boolean
-  }): Promise<T['data']>
-
-  async function getSiteInfo<T extends GetSiteInfoOperation>(
-    opts: {
-      config?: Partial<WixConfig>
-      preview?: boolean
-    } & OperationOptions
-  ): Promise<T['data']>
-
   async function getSiteInfo<T extends GetSiteInfoOperation>({
-    query = getSiteInfoQuery,
     config,
-    variables,
   }: {
     query?: string
     config?: Partial<WixConfig>
@@ -37,20 +22,6 @@ export default function getSiteInfoOperation({
 
     const categoriesPromise = getCategories(cfg)
     const brandsPromise = getBrands(cfg)
-    /*
-    const { fetch, locale } = cfg
-    const { data } = await fetch<GetSiteInfoQuery, GetSiteInfoQueryVariables>(
-      query,
-      { variables },
-      {
-        ...(locale && {
-          headers: {
-            'Accept-Language': locale,
-          },
-        }),
-      }
-    )
-    */
 
     return {
       categories: await categoriesPromise,

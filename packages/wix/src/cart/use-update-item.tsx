@@ -13,7 +13,7 @@ import useCart from './use-cart'
 import { handler as removeItemHandler } from './use-remove-item'
 import type { UpdateItemHook, LineItem } from '../types/cart'
 import {
-  getCheckoutId,
+  getCartId,
   checkoutLineItemUpdateMutation,
   checkoutToCart,
 } from '../utils'
@@ -54,7 +54,7 @@ export const handler = {
     >({
       ...options,
       variables: {
-        checkoutId: getCheckoutId(),
+        cartid: getCartId(),
         lineItems: [
           {
             id: itemId,

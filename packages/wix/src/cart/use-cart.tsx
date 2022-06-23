@@ -1,46 +1,37 @@
 import { useMemo } from 'react'
 import useCommerceCart, { UseCart } from '@vercel/commerce/cart/use-cart'
-
-import { SWRHook } from '@vercel/commerce/utils/types'
 import { checkoutToCart } from '../utils'
-import getCheckoutQuery from '../utils/queries/get-checkout-query'
-import { GetCartHook } from '../types/cart'
 import Cookies from 'js-cookie'
 
 import {
-  SHOPIFY_CHECKOUT_ID_COOKIE,
+  WIX_CART_ID_COOKIE,
   WIX_CHECKOUT_URL_COOKIE,
 } from '../const'
 
 export default useCommerceCart as UseCart<typeof handler>
 
-export const handler: SWRHook<GetCartHook> = {
-  fetchOptions: {
-    query: getCheckoutQuery,
-  },
-  async fetcher({ input: { cartId }, options, fetch }) {
-    if (cartId) {
-      const { node: checkout } = await fetch({
-        ...options,
-        variables: {
-          checkoutId: cartId,
-        },
+export const handler: any = {
+  async fetcher({ input: { cartId }, options, fetch }: any) {
+    // if (cartId) {
+    const { cart } = await fetch({
+      ...options,
+      url: 'ecom/v1/carts/current',
+    })
+    if (cart?.completedAt) {
+      Cookies.remove(WIX_CART_ID_COOKIE)
+      Cookies.remove(WIX_CHECKOUT_URL_COOKIE)
+      return null
+    } else {
+      return checkoutToCart({
+        cart,
       })
-      if (checkout?.completedAt) {
-        Cookies.remove(SHOPIFY_CHECKOUT_ID_COOKIE)
-        Cookies.remove(WIX_CHECKOUT_URL_COOKIE)
-        return null
-      } else {
-        return checkoutToCart({
-          checkout,
-        })
-      }
     }
-    return null
+    // }
+    // return null
   },
   useHook:
-    ({ useData }) =>
-    (input) => {
+    ({ useData }: any) =>
+    (input: any) => {
       const response = useData({
         swrOptions: { revalidateOnFocus: false, ...input?.swrOptions },
       })

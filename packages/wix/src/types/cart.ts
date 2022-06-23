@@ -2,7 +2,7 @@ import * as Core from '@vercel/commerce/types/cart'
 
 export * from '@vercel/commerce/types/cart'
 
-export type ShopifyCart = {}
+export type WixCart = {}
 
 /**
  * Extend core cart types

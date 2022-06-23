@@ -1,0 +1,37 @@
+import Cookies from 'js-cookie'
+
+import {
+  WIX_CART_ID_COOKIE,
+  WIX_CHECKOUT_URL_COOKIE,
+  WIX_COOKIE_EXPIRE,
+} from '../const'
+
+import { FetcherOptions } from '@vercel/commerce/utils/types'
+
+export const cartCreate = async (
+  fetcher: <T = any, B = Body>(options: FetcherOptions<B>) => Promise<T>,
+  lineItems: any
+): Promise<any> => {
+  const { cart } = await fetcher({
+    method: 'POST',
+    url: 'ecom/v1/carts',
+    variables: {
+      lineItems,
+    },
+  })
+
+  if (cart) {
+    const cartId = cart?.id
+    const options = {
+      expires: WIX_COOKIE_EXPIRE,
+    }
+    Cookies.set(WIX_CART_ID_COOKIE, cartId, options)
+    if (cartId?.webUrl) {
+      Cookies.set(WIX_CHECKOUT_URL_COOKIE, cartId.webUrl, options)
+    }
+  }
+
+  return cartCreate!
+}
+
+export default cartCreate

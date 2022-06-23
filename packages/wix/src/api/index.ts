@@ -9,7 +9,7 @@ import {
   API_URL,
   API_TOKEN,
   WIX_CUSTOMER_TOKEN_COOKIE,
-  SHOPIFY_CHECKOUT_ID_COOKIE
+  WIX_CART_ID_COOKIE
 } from '../const'
 
 import fetcher from '../fetcher'
@@ -32,7 +32,7 @@ const config: WixConfig = {
   commerceUrl: API_URL,
   apiToken: API_TOKEN,
   customerCookie: WIX_CUSTOMER_TOKEN_COOKIE,
-  cartCookie: SHOPIFY_CHECKOUT_ID_COOKIE,
+  cartCookie: WIX_CART_ID_COOKIE,
   cartCookieMaxAge: ONE_DAY * 30,
   fetch: createGraphqlFetcher(() => getCommerceApi().getConfig()),
   fetcher

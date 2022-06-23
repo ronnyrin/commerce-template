@@ -14,7 +14,7 @@ const fetcher: Fetcher = async ({
   return handleFetchResponse(
     await fetch(`${API_URL}/${url}`, {
       method,
-      ...(variables && {body: JSON.stringify({query: variables})}),
+      ...(variables && {body: variables}),
       headers: {
         'Authorization': API_TOKEN!,
         'Content-Type': 'application/json',

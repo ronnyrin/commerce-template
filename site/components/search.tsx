@@ -39,9 +39,8 @@ export default function Search({ categories, brands }: SearchPropsType) {
   // in the same way of products, it's better to ignore the search input if one
   // of those is selected
   const query = filterQuery({ sort })
-
   const { pathname, category, brand } = useSearchMeta(asPath)
-  const activeCategory = categories.find((cat: any) => cat.slug === category)
+  const activeCategory = categories.find((cat: any) => cat.name === category)
   const activeBrand = brands.find(
     (b: any) => getSlug(b.node.path) === `brands/${brand}`
   )?.node

@@ -4,17 +4,13 @@ import type { Cart, LineItem } from '../types/cart'
 import type { Category } from '../types/site'
 
 import {
-  Product as ShopifyProduct,
   Checkout,
   CheckoutLineItemEdge,
   SelectedOption,
-  ImageConnection,
   ProductVariantConnection,
-  MoneyV2,
   ProductOption,
   Page as ShopifyPage,
   PageEdge,
-  Collection,
 } from '../../schema'
 import { colorMap } from './colors'
 
@@ -184,12 +180,11 @@ export const normalizePages = (edges: PageEdge[], locale?: string): Page[] =>
   edges?.map((edge) => normalizePage(edge.node, locale))
 
 export const normalizeCategory = ({
-  title: name,
-  handle,
+  name,
   id,
-}: Collection): Category => ({
+}: any): Category => ({
   id,
   name,
-  slug: handle,
-  path: `/${handle}`,
+  slug: name,
+  path: `/${name}`,
 })

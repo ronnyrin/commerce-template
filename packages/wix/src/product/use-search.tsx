@@ -2,21 +2,8 @@ import { SWRHook } from '@vercel/commerce/utils/types'
 import useSearch, { UseSearch } from '@vercel/commerce/product/use-search'
 
 import {
-  CollectionEdge,
-  GetAllProductsQuery,
-  GetProductsFromCollectionQueryVariables,
-  Product as ShopifyProduct,
-  ProductEdge,
-} from '../../schema'
-
-import {
-  getAllProductsQuery,
-  getCollectionProductsQuery,
-  getSearchVariables,
   normalizeProduct,
 } from '../utils'
-
-import type { SearchProductsHook } from '../types/product'
 
 export type SearchProductsInput = {
   search?: string
@@ -28,52 +15,43 @@ export type SearchProductsInput = {
 
 export default useSearch as UseSearch<typeof handler>
 
-export const handler: SWRHook<SearchProductsHook> = {
-  fetchOptions: {
-    query: getAllProductsQuery,
-  },
-  async fetcher({ input, options, fetch }) {
+export const handler: any = {
+// @ts-ignore
+  async fetcher({ input, options, fetcher }) {
     const { categoryId, brandId } = input
-    const method = options?.method
-    const variables = getSearchVariables(input)
+    const method = 'POST'
+    // const variables = getSearchVariables(input)
     let products
-
-    // change the query to getCollectionProductsQuery when categoryId is set
     if (categoryId) {
-      const data = await fetch<
-        CollectionEdge,
-        GetProductsFromCollectionQueryVariables
-      >({
-        query: getCollectionProductsQuery,
+      const data = await fetcher({
+        url: 'stores/v1/collections/query',
         method,
-        variables,
+        query: JSON.stringify({variables: {id: input.categoryId}}),
       })
-      // filter on client when brandId & categoryId are set since is not available on collection product query
       products = brandId
-        ? data.node?.products?.edges?.filter(
-            ({ node: { vendor } }: ProductEdge) =>
+        ? data.products?.filter(
+            ({ node: { vendor } }: any) =>
               vendor.replace(/\s+/g, '-').toLowerCase() === brandId
           )
-        : data.node?.products?.edges
+        : data.products
     } else {
-      const data = await fetch<GetAllProductsQuery>({
-        query: options.query,
+      const data = await fetcher({
         method,
-        variables,
+        // variables,
       })
-      products = data.products?.edges
+      products = data.products
     }
 
     return {
-      products: products?.map(({ node }) =>
-        normalizeProduct(node as ShopifyProduct)
+      products: products?.map((p: any) =>
+        normalizeProduct(p)
       ),
       found: !!products?.length,
     }
   },
   useHook:
-    ({ useData }) =>
-    (input = {}) => {
+    ({ useData }: any) =>
+    (input: any = {}) => {
       return useData({
         input: [
           ['search', input.search],

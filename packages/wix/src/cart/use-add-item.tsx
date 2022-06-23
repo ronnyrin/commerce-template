@@ -1,25 +1,17 @@
 import { useCallback } from 'react'
-import type { MutationHook } from '@vercel/commerce/utils/types'
 import { CommerceError } from '@vercel/commerce/utils/errors'
 import useAddItem, { UseAddItem } from '@vercel/commerce/cart/use-add-item'
-import type { AddItemHook } from '../types/cart'
 import useCart from './use-cart'
 
 import {
-  checkoutLineItemAddMutation,
-  getCheckoutId,
   checkoutToCart,
-  checkoutCreate,
+  cartCreate, getCartId
 } from '../utils'
-import { Mutation, MutationCheckoutLineItemsAddArgs } from '../../schema'
 
 export default useAddItem as UseAddItem<typeof handler>
 
-export const handler: MutationHook<AddItemHook> = {
-  fetchOptions: {
-    query: checkoutLineItemAddMutation,
-  },
-  async fetcher({ input: item, options, fetch }) {
+export const handler: any = {
+  async fetcher({ input: item, options, fetch }: any) {
     if (
       item.quantity &&
       (!Number.isInteger(item.quantity) || item.quantity! < 1)
@@ -31,23 +23,19 @@ export const handler: MutationHook<AddItemHook> = {
 
     const lineItems = [
       {
-        variantId: item.variantId,
+        catalogReference: {catalogItemId: item.productId, appId: '1380b703-ce81-ff05-f115-39571d94dfcd'},
         quantity: item.quantity ?? 1,
       },
     ]
 
-    let checkoutId = getCheckoutId()
+    let cartId = getCartId()
 
-    if (!checkoutId) {
-      return checkoutToCart(await checkoutCreate(fetch, lineItems))
+    if (!cartId) {
+      return checkoutToCart(await cartCreate(fetch, lineItems))
     } else {
-      const { checkoutLineItemsAdd } = await fetch<
-        Mutation,
-        MutationCheckoutLineItemsAddArgs
-      >({
+      const { checkoutLineItemsAdd } = await fetch({
         ...options,
         variables: {
-          checkoutId,
           lineItems,
         },
       })
@@ -55,7 +43,7 @@ export const handler: MutationHook<AddItemHook> = {
     }
   },
   useHook:
-    ({ fetch }) =>
+    ({ fetch }: any) =>
     () => {
       const { mutate } = useCart()
       return useCallback(

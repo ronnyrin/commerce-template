@@ -19,8 +19,7 @@ export default function getProductOperation({
     config?: Partial<WixConfig>
   } = {}): Promise<T['data']> {
     const { fetcher } = commerce.getConfig(config)
-    const { products } = await fetcher({url, method: 'POST', variables: {filter: JSON.stringify({slug: variables.slug})}})
-    console.log(products.length)
+    const { products } = await fetcher({url, method: 'POST', variables: JSON.stringify({query: {filter: JSON.stringify({slug: variables.slug})}})})
     return {
       product: normalizeProduct(products[0])
     }

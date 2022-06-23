@@ -22,7 +22,7 @@ export default useRemoveItem as UseRemoveItem<typeof handler>
 
 import {
   checkoutLineItemRemoveMutation,
-  getCheckoutId,
+  getCartId,
   checkoutToCart,
 } from '../utils'
 
@@ -39,7 +39,7 @@ export const handler = {
   }: HookFetcherContext<RemoveItemHook>) {
     const data = await fetch<Mutation, MutationCheckoutLineItemsRemoveArgs>({
       ...options,
-      variables: { checkoutId: getCheckoutId(), lineItemIds: [itemId] },
+      variables: { cartId: getCartId(), lineItemIds: [itemId] },
     })
     return checkoutToCart(data.checkoutLineItemsRemove)
   },
