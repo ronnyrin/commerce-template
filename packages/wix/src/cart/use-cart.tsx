@@ -11,10 +11,14 @@ import {
 export default useCommerceCart as UseCart<typeof handler>
 
 export const handler: any = {
-  async fetcher({ input: { cartId }, options, fetch }: any) {
+  fetchOptions: {
+    url: 'ecom/v1/carts/current',
+    method: 'GET',
+  },
+  async fetcher({ options, fetch }: any) {
     // if (cartId) {
     const { cart } = await fetch({
-      ...options,
+      method: 'GET',
       url: 'ecom/v1/carts/current',
     })
     if (cart?.completedAt) {

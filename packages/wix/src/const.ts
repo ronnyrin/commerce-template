@@ -1,4 +1,4 @@
-export const WIX_CART_ID_COOKIE = 'wix_checkoutId'
+export const WIX_CART_ID_COOKIE = 'wix_cartId'
 
 export const WIX_CHECKOUT_URL_COOKIE = 'wix_checkoutUrl'
 

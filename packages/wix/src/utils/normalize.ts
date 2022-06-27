@@ -122,48 +122,48 @@ export function normalizeProduct({
   }
 }
 
-export function normalizeCart(checkout: Checkout): Cart {
+export function normalizeCart(cart: any): Cart {
   return {
-    id: checkout.id,
-    url: checkout.webUrl,
+    id: cart.id,
+    // url: cart.webUrl,
     customerId: '',
     email: '',
-    createdAt: checkout.createdAt,
+    createdAt: cart.createdDate,
     currency: {
-      code: checkout.totalPriceV2?.currencyCode,
+      code: cart.currency,
     },
-    taxesIncluded: checkout.taxesIncluded,
-    lineItems: checkout.lineItems?.edges.map(normalizeLineItem),
-    lineItemsSubtotalPrice: +checkout.subtotalPriceV2?.amount,
-    subtotalPrice: +checkout.subtotalPriceV2?.amount,
-    totalPrice: checkout.totalPriceV2?.amount,
+    taxesIncluded: cart.taxIncludedInPrices,
+    lineItems: cart.lineItems?.map(normalizeLineItem),
+    lineItemsSubtotalPrice: +cart.subtotal?.amount,
+    subtotalPrice: +cart.subtotal?.amount,
+    totalPrice: cart.subtotal?.amount,
     discounts: [],
   }
 }
 
 function normalizeLineItem({
-  node: { id, title, variant, quantity },
-}: CheckoutLineItemEdge): LineItem {
+  id, productName, quantity, catalogReference, image, physicalProperties, price, priceBeforeDiscounts, url
+}: any): LineItem {
   return {
     id,
-    variantId: String(variant?.id),
-    productId: String(variant?.id),
-    name: `${title}`,
+    variantId: catalogReference.catalogItemId,
+    productId: catalogReference.catalogItemId,
+    name: productName.translated,
     quantity,
     variant: {
-      id: String(variant?.id),
-      sku: variant?.sku ?? '',
-      name: variant?.title!,
+      id: catalogReference.catalogItemId,
+      sku: physicalProperties?.sku ?? '',
+      name: productName.translated,
       image: {
-        url: variant?.image?.originalSrc || '/product-img-placeholder.svg',
+        url: image.url || '/product-img-placeholder.svg',
       },
-      requiresShipping: variant?.requiresShipping ?? false,
-      price: variant?.priceV2?.amount,
-      listPrice: variant?.compareAtPriceV2?.amount,
+      requiresShipping: physicalProperties?.shippable ?? false,
+      price: price?.amount,
+      listPrice: priceBeforeDiscounts?.amount,
     },
-    path: String(variant?.product?.handle),
+    path: String(url.relativePath),
     discounts: [],
-    options: variant?.title == 'Default Title' ? [] : variant?.selectedOptions,
+    options: [],
   }
 }
 

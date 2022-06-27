@@ -6,24 +6,22 @@ import {
   WIX_COOKIE_EXPIRE
 } from '../const'
 
-import { FetcherOptions } from '@vercel/commerce/utils/types'
-
 export const cartCreate = async (
   fetcher: any,
   lineItems: any
 ): Promise<any> => {
-  const res = await fetcher({
-    method: 'POST',
-    shouldAdd: false,
-    url: 'v1/meta-site/session-token'
-  })
-  console.log(res)
+  // const res = await fetcher({
+  //   method: 'POST',
+  //   shouldAdd: false,
+  //   url: 'v1/meta-site/session-token'
+  // })
+  // console.log(res)
   const { cart } = await fetcher({
     method: 'POST',
     url: 'ecom/v1/carts',
-    variables: {
+    variables: JSON.stringify({
       lineItems
-    }
+    })
   })
 
   if (cart) {

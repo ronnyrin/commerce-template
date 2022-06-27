@@ -34,10 +34,10 @@ export const handler: any = {
       return checkoutToCart(await cartCreate(fetch, lineItems))
     } else {
       const { checkoutLineItemsAdd } = await fetch({
-        ...options,
-        variables: {
+        url: `ecom/v1/carts/${cartId}/add-to-cart`,
+        variables: JSON.stringify({
           lineItems,
-        },
+        }),
       })
       return checkoutToCart(checkoutLineItemsAdd)
     }
