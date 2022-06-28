@@ -3,6 +3,7 @@ import useCheckout, {
   UseCheckout,
 } from '@vercel/commerce/checkout/use-checkout'
 import { useMemo } from 'react'
+import { WIX_VIEWER_URL, WIX_DOMAIN } from '../const'
 
 export default useCheckout as UseCheckout<typeof handler>
 
@@ -17,7 +18,7 @@ export const handler: SWRHook<any> = {
       url: `ecom/v1/carts/${input.cartId}/create-checkout`,
       variables: JSON.stringify({channelType: 'WEB'})
     })
-    return checkoutId;
+    return `${WIX_VIEWER_URL}/checkout?appSectionParams={"checkoutId":"${checkoutId}","successUrl":"${WIX_DOMAIN}/success"}`;
   },
     useHook:
       ({ useData }: any) =>

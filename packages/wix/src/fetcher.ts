@@ -1,4 +1,4 @@
-import { API_URL, WIX_ACCESS_TOKEN_COOKIE } from './const'
+import { API_URL, WIX_ACCESS_TOKEN_COOKIE, WIX_DOMAIN } from './const'
 import { handleFetchResponse } from './utils'
 import Cookies from 'js-cookie'
 
@@ -14,7 +14,7 @@ const fetcher: any = async ({
       {
         method: 'POST',
         headers: {
-          'origin': 'ronny-wix-headless.com',
+          'origin': WIX_DOMAIN!,
           'Content-Type': 'application/json'
         }
       })

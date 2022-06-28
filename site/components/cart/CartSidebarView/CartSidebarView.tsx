@@ -14,7 +14,7 @@ import SidebarLayout from '@components/common/SidebarLayout'
 const CartSidebarView: FC = () => {
   const { closeSidebar } = useUI()
   const { data, isLoading, isEmpty } = useCart()
-  const {data: a, isLoading: lll} = useCheckout();
+  const {data: url, isLoading: lll} = useCheckout();
 
   const { price: subTotal } = usePrice(
     data && {
@@ -31,7 +31,7 @@ const CartSidebarView: FC = () => {
   const handleClose = () => closeSidebar()
   const goToCheckout = () => {
     closeSidebar();
-    window.open(`https://ronnyr34.wixsite.com/my-site-165/checkout?appSectionParams={"checkoutId":"${a}"}`, '_top')
+    window.open(url, '_top')
   }
 
   const error = null
