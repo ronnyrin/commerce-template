@@ -161,7 +161,7 @@ function normalizeLineItem({
       price: price?.amount,
       listPrice: priceBeforeDiscounts?.amount,
     },
-    path: String(url.relativePath),
+    path: String(url.relativePath.split('/')[2]),
     discounts: [],
     options: [],
   }

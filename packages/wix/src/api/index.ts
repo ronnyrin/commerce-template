@@ -7,7 +7,6 @@ import createGraphqlFetcher from './utils/graphql-fetch'
 
 import {
   API_URL,
-  API_TOKEN,
   WIX_CUSTOMER_TOKEN_COOKIE,
   WIX_CART_ID_COOKIE
 } from '../const'
@@ -15,12 +14,6 @@ import {
 import fetcher from '../fetcher'
 
 import * as operations from './operations'
-
-if (!API_TOKEN) {
-  throw new Error(
-    `The environment variable NEXT_PUBLIC_WIX_STOREFRONT_ACCESS_TOKEN is missing and it's required to access your store`
-  )
-}
 
 export interface WixConfig extends CommerceAPIConfig {
   fetcher: typeof fetcher
@@ -30,7 +23,7 @@ const ONE_DAY = 60 * 60 * 24
 
 const config: WixConfig = {
   commerceUrl: API_URL,
-  apiToken: API_TOKEN,
+  apiToken: '',
   customerCookie: WIX_CUSTOMER_TOKEN_COOKIE,
   cartCookie: WIX_CART_ID_COOKIE,
   cartCookieMaxAge: ONE_DAY * 30,

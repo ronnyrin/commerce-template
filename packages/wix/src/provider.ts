@@ -1,5 +1,7 @@
 import { WIX_CART_ID_COOKIE } from './const'
 
+import { handler as useCheckout } from './checkout/use-checkout'
+
 import { handler as useCart } from './cart/use-cart'
 import { handler as useAddItem } from './cart/use-add-item'
 import { handler as useUpdateItem } from './cart/use-update-item'
@@ -19,6 +21,7 @@ export const wixProvider = {
   cartCookie: WIX_CART_ID_COOKIE,
   fetcher,
   cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
+  checkout: {useCheckout},
   customer: { useCustomer },
   products: { useSearch },
   auth: { useLogin, useLogout, useSignup },

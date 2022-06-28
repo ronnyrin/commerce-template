@@ -5,7 +5,6 @@ import Cookies from 'js-cookie'
 
 import {
   WIX_CART_ID_COOKIE,
-  WIX_CHECKOUT_URL_COOKIE,
 } from '../const'
 
 export default useCommerceCart as UseCart<typeof handler>
@@ -16,22 +15,18 @@ export const handler: any = {
     method: 'GET',
   },
   async fetcher({ options, fetch }: any) {
-    // if (cartId) {
-    const { cart } = await fetch({
-      method: 'GET',
-      url: 'ecom/v1/carts/current',
-    })
-    if (cart?.completedAt) {
-      Cookies.remove(WIX_CART_ID_COOKIE)
-      Cookies.remove(WIX_CHECKOUT_URL_COOKIE)
-      return null
-    } else {
-      return checkoutToCart({
-        cart,
+    try {
+      const { cart } = await fetch({
+        ...options,
+        method: 'GET',
+        url: 'ecom/v1/carts/current',
       })
+        return checkoutToCart({
+          cart,
+        })
+    } catch (e) {
+      Cookies.remove(WIX_CART_ID_COOKIE)
     }
-    // }
-    // return null
   },
   useHook:
     ({ useData }: any) =>

@@ -8,11 +8,13 @@ import { useUI } from '@components/ui/context'
 import { Bag, Cross, Check } from '@components/icons'
 import useCart from '@framework/cart/use-cart'
 import usePrice from '@framework/product/use-price'
+import useCheckout from '@framework/checkout/use-checkout'
 import SidebarLayout from '@components/common/SidebarLayout'
 
 const CartSidebarView: FC = () => {
-  const { closeSidebar, setSidebarView } = useUI()
+  const { closeSidebar } = useUI()
   const { data, isLoading, isEmpty } = useCart()
+  const {data: a, isLoading: lll} = useCheckout();
 
   const { price: subTotal } = usePrice(
     data && {
@@ -27,7 +29,10 @@ const CartSidebarView: FC = () => {
     }
   )
   const handleClose = () => closeSidebar()
-  const goToCheckout = () => setSidebarView('CHECKOUT_VIEW')
+  const goToCheckout = () => {
+    closeSidebar();
+    window.open(`https://ronnyr34.wixsite.com/my-site-165/checkout?appSectionParams={"checkoutId":"${a}"}`, '_top')
+  }
 
   const error = null
   const success = null
@@ -39,7 +44,7 @@ const CartSidebarView: FC = () => {
       })}
       handleClose={handleClose}
     >
-      {isLoading || isEmpty ? (
+      {isLoading || isEmpty || lll ? (
         <div className="flex-1 px-4 flex flex-col justify-center items-center">
           <span className="border border-dashed border-primary rounded-full flex items-center justify-center w-16 h-16 p-12 bg-secondary text-secondary">
             <Bag className="absolute" />
@@ -116,7 +121,7 @@ const CartSidebarView: FC = () => {
                   Proceed to Checkout ({total})
                 </Button>
               ) : (
-                <Button href="/checkout" Component="a" width="100%">
+                <Button onClick={goToCheckout} Component="a" width="100%">
                   Proceed to Checkout
                 </Button>
               )}
