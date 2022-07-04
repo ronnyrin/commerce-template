@@ -11,6 +11,7 @@ export async function getAsyncError(res: Response) {
 }
 
 const handleFetchResponse = async (res: Response) => {
+  console.log(res.headers)
   if (res.ok) {
     return res.json();
   }
