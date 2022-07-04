@@ -30,6 +30,8 @@ function getProviderName() {
       ? '@vercel/commerce-bigcommerce'
       : process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN
       ? '@vercel/commerce-shopify'
+      : process.env.NEXT_PUBLIC_WIX_VIEWER_URL
+      ? '@vercel/commerce-wix'
       : process.env.NEXT_PUBLIC_SWELL_STORE_ID
       ? '@vercel/commerce-swell'
       : '@vercel/commerce-local')
