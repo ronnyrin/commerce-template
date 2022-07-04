@@ -9,7 +9,7 @@ export const cartCreate = async (
   fetcher: any,
   lineItems: any
 ): Promise<any> => {
-  const { cart } = await fetcher({
+  const res = await fetcher({
     method: 'POST',
     url: 'ecom/v1/carts',
     variables: JSON.stringify({
@@ -17,15 +17,15 @@ export const cartCreate = async (
     })
   })
 
-  if (cart) {
-    const cartId = cart?.id
+  if (res) {
+    const cartId = res.cart?.id
     const options = {
       expires: WIX_COOKIE_EXPIRE
     }
     Cookies.set(WIX_CART_ID_COOKIE, cartId, options)
   }
 
-  return cartCreate!
+  return res
 }
 
 export default cartCreate

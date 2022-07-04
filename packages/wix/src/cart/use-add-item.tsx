@@ -33,13 +33,13 @@ export const handler: any = {
     if (!cartId) {
       return checkoutToCart(await cartCreate(fetch, lineItems))
     } else {
-      const { checkoutLineItemsAdd } = await fetch({
+      const res = await fetch({
         url: `ecom/v1/carts/${cartId}/add-to-cart`,
         variables: JSON.stringify({
           lineItems,
         }),
       })
-      return checkoutToCart(checkoutLineItemsAdd)
+      return checkoutToCart(res)
     }
   },
   useHook:
