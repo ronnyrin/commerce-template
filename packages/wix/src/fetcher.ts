@@ -32,6 +32,7 @@ const fetcher: any = async ({
       method,
       ...(variables && { body: variables }),
       headers: {
+        'origin': WIX_DOMAIN!,
         'Authorization': accessToken!,
         'Content-Type': 'application/json'
       }
