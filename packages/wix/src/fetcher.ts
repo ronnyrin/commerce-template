@@ -20,7 +20,7 @@ const fetcher: any = async ({
       })
     const json = await res.json()
     accessToken = json.accessToken
-    console.log(json)
+    console.log(json, WIX_DOMAIN)
     Cookies.set(WIX_ACCESS_TOKEN_COOKIE, accessToken!)
   }
 
