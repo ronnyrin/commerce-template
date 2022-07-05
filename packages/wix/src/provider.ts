@@ -21,7 +21,7 @@ export const wixProvider = {
   cartCookie: WIX_CART_ID_COOKIE,
   fetcher,
   cart: { useCart, useAddItem, useUpdateItem, useRemoveItem },
-  checkout: {useCheckout},
+  // checkout: {useCheckout},
   customer: { useCustomer },
   products: { useSearch },
   auth: { useLogin, useLogout, useSignup },

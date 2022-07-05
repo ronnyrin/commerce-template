@@ -9,6 +9,7 @@ import {
   Page as ShopifyPage,
   PageEdge
 } from '../../schema'
+import { WIX_VIEWER_URL, WIX_DOMAIN } from '../const'
 
 const money = ({ price, currency }: any) => {
   return {
@@ -111,10 +112,10 @@ export function normalizeProduct({
   }
 }
 
-export function normalizeCart(cart: any): Cart {
+export function normalizeCart({cart, checkoutId}: any): Cart {
   return {
     id: cart.id,
-    // url: cart.webUrl,
+    url: `${WIX_VIEWER_URL}/checkout?appSectionParams={"checkoutId":"${checkoutId}","successUrl":"${WIX_DOMAIN}/success"}`,
     customerId: '',
     email: '',
     createdAt: cart.createdDate,
