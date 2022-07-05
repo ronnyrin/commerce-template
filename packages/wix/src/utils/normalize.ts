@@ -4,47 +4,37 @@ import type { Cart, LineItem } from '../types/cart'
 import type { Category } from '../types/site'
 
 import {
-  Checkout,
-  CheckoutLineItemEdge,
   SelectedOption,
   ProductVariantConnection,
-  ProductOption,
   Page as ShopifyPage,
-  PageEdge,
+  PageEdge
 } from '../../schema'
-import { colorMap } from './colors'
 
 const money = ({ price, currency }: any) => {
   return {
     value: +price,
-    currencyCode: currency,
+    currencyCode: currency
   }
 }
 
 const normalizeProductOption = ({
-  id,
   name: displayName,
-  values,
-}: ProductOption) => {
+  choices
+}: any) => {
   return {
-    __typename: 'MultipleChoiceOption',
-    id,
     displayName: displayName.toLowerCase(),
-    values: values.map((value) => {
+    values: choices.map((choice: any) => {
       let output: any = {
-        label: value,
+        label: choice.value
       }
       if (displayName.match(/colou?r/gi)) {
-        const mapedColor = colorMap[value.toLowerCase().replace(/ /g, '')]
-        if (mapedColor) {
-          output = {
-            ...output,
-            hexColors: [mapedColor],
-          }
+        output = {
+          ...output,
+          hexColors: [choice.value]
         }
       }
       return output
-    }),
+    })
   }
 }
 
@@ -62,8 +52,8 @@ const normalizeProductVariants = ({ edges }: ProductVariantConnection) => {
         priceV2,
         compareAtPriceV2,
         requiresShipping,
-        availableForSale,
-      },
+        availableForSale
+      }
     }) => {
       return {
         id,
@@ -77,11 +67,11 @@ const normalizeProductVariants = ({ edges }: ProductVariantConnection) => {
           const options = normalizeProductOption({
             id,
             name,
-            values: [value],
+            values: [value]
           })
 
           return options
-        }),
+        })
       }
     }
   )
@@ -98,10 +88,10 @@ export function normalizeProduct({
   price,
   slug,
   convertedPriceData,
-  options,
+  productOptions,
   metafields,
   ...rest
-}: any): Product {
+}: any): any {
   return {
     id,
     name: name,
@@ -111,14 +101,13 @@ export function normalizeProduct({
     price: money(convertedPriceData),
     images: normalizeProductImages(media),
     variants: [],
-    options: options
-      ? options
-          .filter((o: any) => o.name !== 'Title') // By default Shopify adds a 'Title' name when there's only one option. We don't need it. https://community.shopify.com/c/Shopify-APIs-SDKs/Adding-new-product-variant-is-automatically-adding-quot-Default/td-p/358095
-          .map((o: any) => normalizeProductOption(o))
+    options: productOptions
+      ? productOptions
+        .map((o: any) => normalizeProductOption(o))
       : [],
     ...(description && { description }),
     ...(descriptionHtml && { descriptionHtml }),
-    ...rest,
+    ...rest
   }
 }
 
@@ -130,14 +119,14 @@ export function normalizeCart(cart: any): Cart {
     email: '',
     createdAt: cart.createdDate,
     currency: {
-      code: cart.currency,
+      code: cart.currency
     },
     taxesIncluded: cart.taxIncludedInPrices,
     lineItems: cart.lineItems?.map(normalizeLineItem),
     lineItemsSubtotalPrice: +cart.subtotal?.amount,
     subtotalPrice: +cart.subtotal?.amount,
     totalPrice: cart.subtotal?.amount,
-    discounts: [],
+    discounts: []
   }
 }
 
@@ -155,15 +144,15 @@ function normalizeLineItem({
       sku: physicalProperties?.sku ?? '',
       name: productName.translated,
       image: {
-        url: image.url || '/product-img-placeholder.svg',
+        url: image.url || '/product-img-placeholder.svg'
       },
       requiresShipping: physicalProperties?.shippable ?? false,
       price: price?.amount,
-      listPrice: priceBeforeDiscounts?.amount,
+      listPrice: priceBeforeDiscounts?.amount
     },
     path: String(url.relativePath.split('/')[2]),
     discounts: [],
-    options: [],
+    options: []
   }
 }
 
@@ -173,7 +162,7 @@ export const normalizePage = (
 ): Page => ({
   ...page,
   url: `/${locale}/${handle}`,
-  name,
+  name
 })
 
 export const normalizePages = (edges: PageEdge[], locale?: string): Page[] =>
@@ -181,10 +170,10 @@ export const normalizePages = (edges: PageEdge[], locale?: string): Page[] =>
 
 export const normalizeCategory = ({
   name,
-  id,
+  id
 }: any): Category => ({
   id,
   name,
   slug: name,
-  path: `/${name}`,
+  path: `/${name}`
 })
