@@ -21,27 +21,23 @@ export type RemoveItemActionInput<T = any> = T extends LineItem
 export default useRemoveItem as UseRemoveItem<typeof handler>
 
 import {
-  checkoutLineItemRemoveMutation,
   getCartId,
   checkoutToCart,
 } from '../utils'
 
-import { Mutation, MutationCheckoutLineItemsRemoveArgs } from '../../schema'
-
-export const handler = {
-  fetchOptions: {
-    query: checkoutLineItemRemoveMutation,
-  },
+export const handler: any = {
   async fetcher({
     input: { itemId },
     options,
     fetch,
   }: HookFetcherContext<RemoveItemHook>) {
-    const data = await fetch<Mutation, MutationCheckoutLineItemsRemoveArgs>({
-      ...options,
-      variables: { cartId: getCartId(), lineItemIds: [itemId] },
+    const res = await fetch({
+      url: `ecom/v1/carts/${getCartId()}/remove-line-items`,
+      variables: JSON.stringify({
+        lineItemIds: [itemId],
+      }),
     })
-    return checkoutToCart(data.checkoutLineItemsRemove)
+    return checkoutToCart(res)
   },
   useHook:
     ({ fetch }: MutationHookContext<RemoveItemHook>) =>
