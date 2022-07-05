@@ -22,10 +22,10 @@ const normalizeProductOption = ({
   choices
 }: any) => {
   return {
-    displayName: displayName.toLowerCase(),
+    displayName,
     values: choices.map((choice: any) => {
       let output: any = {
-        label: choice.value
+        label: choice.description,
       }
       if (displayName.match(/colou?r/gi)) {
         output = {
@@ -131,7 +131,7 @@ export function normalizeCart(cart: any): Cart {
 }
 
 function normalizeLineItem({
-  id, productName, quantity, catalogReference, image, physicalProperties, price, priceBeforeDiscounts, url
+  id, productName, quantity, catalogReference, image, physicalProperties, price, priceBeforeDiscounts, url, descriptionLines
 }: any): LineItem {
   return {
     id,
@@ -152,7 +152,7 @@ function normalizeLineItem({
     },
     path: String(url.relativePath.split('/')[2]),
     discounts: [],
-    options: []
+    options: descriptionLines.map((line: any) => ({name: line.name.translated, value: line.colorInfo?.code || line.plainText?.translated}))
   }
 }
 

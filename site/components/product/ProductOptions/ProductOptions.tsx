@@ -23,11 +23,11 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
           </h2>
           <div role="listbox" className="flex flex-row py-4">
             {opt.values.map((v, i: number) => {
-              const active = selectedOptions[opt.displayName.toLowerCase()]
+              const active = selectedOptions[opt.displayName]
               return (
                 <Swatch
                   key={`${opt.id}-${i}`}
-                  active={v.label.toLowerCase() === active}
+                  active={v.label === active}
                   variant={opt.displayName}
                   color={v.hexColors ? v.hexColors[0] : ''}
                   label={v.label}
@@ -35,7 +35,7 @@ const ProductOptions: React.FC<ProductOptionsProps> = ({
                     setSelectedOptions((selectedOptions) => {
                       return {
                         ...selectedOptions,
-                        [opt.displayName.toLowerCase()]: v.label.toLowerCase(),
+                        [opt.displayName]: v.label,
                       }
                     })
                   }}

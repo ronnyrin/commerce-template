@@ -23,7 +23,7 @@ export const handler: any = {
 
     const lineItems = [
       {
-        catalogReference: {catalogItemId: item.productId, appId: '1380b703-ce81-ff05-f115-39571d94dfcd'},
+        catalogReference: {catalogItemId: item.productId, appId: '1380b703-ce81-ff05-f115-39571d94dfcd', ...(item.selectedOptions && {options: {options: item.selectedOptions}})},
         quantity: item.quantity ?? 1,
       },
     ]
