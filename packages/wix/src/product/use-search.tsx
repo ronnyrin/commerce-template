@@ -16,28 +16,25 @@ export type SearchProductsInput = {
 export default useSearch as UseSearch<typeof handler>
 
 export const handler: any = {
-// @ts-ignore
-  async fetcher({ input, options, fetcher }) {
-    const { categoryId, brandId } = input
+  fetchOptions: {
+    query: '',
+  },
+  async fetcher({ input, options, fetch }: any) {
+    const { categoryId } = input
     const method = 'POST'
-    // const variables = getSearchVariables(input)
     let products
     if (categoryId) {
-      const data = await fetcher({
-        url: 'stores/v1/collections/query',
+      const data = await fetch({
+        url: 'stores/v1/products/query',
         method,
-        query: JSON.stringify({variables: {id: input.categoryId}}),
+        variables: JSON.stringify({query: {filter: JSON.stringify({'collections.id': categoryId})}}),
       })
-      products = brandId
-        ? data.products?.filter(
-            ({ node: { vendor } }: any) =>
-              vendor.replace(/\s+/g, '-').toLowerCase() === brandId
-          )
-        : data.products
+
+      products = data.products
     } else {
-      const data = await fetcher({
+      const data = await fetch({
+        url: 'stores/v1/products/query',
         method,
-        // variables,
       })
       products = data.products
     }
