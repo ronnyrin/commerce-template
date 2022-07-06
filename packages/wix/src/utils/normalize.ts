@@ -115,7 +115,7 @@ export function normalizeProduct({
 export function normalizeCart({cart, checkoutId}: any): Cart {
   return {
     id: cart.id,
-    url: `${WIX_VIEWER_URL}/checkout?appSectionParams={"checkoutId":"${checkoutId}","successUrl":"${WIX_DOMAIN}/success"}`,
+    url: `${WIX_VIEWER_URL}/checkout?appSectionParams={"checkoutId":"${checkoutId}","successUrl":"https://${WIX_DOMAIN}/success"}`,
     customerId: '',
     email: '',
     createdAt: cart.createdDate,
