@@ -4,8 +4,7 @@ import useAddItem, { UseAddItem } from '@vercel/commerce/cart/use-add-item'
 import useCart from './use-cart'
 
 import {
-  checkoutToCart,
-  cartCreate, getCartId
+  cartCreate, getCartId, normalizeCart
 } from '../utils'
 
 export default useAddItem as UseAddItem<typeof handler>
@@ -31,7 +30,7 @@ export const handler: any = {
     let cartId = getCartId()
 
     if (!cartId) {
-      return checkoutToCart(await cartCreate(fetch, lineItems))
+      return normalizeCart(await cartCreate(fetch, lineItems))
     } else {
       const res = await fetch({
         url: `ecom/v1/carts/${cartId}/add-to-cart`,
@@ -39,7 +38,7 @@ export const handler: any = {
           lineItems,
         }),
       })
-      return checkoutToCart(res)
+      return normalizeCart(res)
     }
   },
   useHook:

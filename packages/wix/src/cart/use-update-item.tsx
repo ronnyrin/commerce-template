@@ -13,8 +13,7 @@ import useCart from './use-cart'
 import { handler as removeItemHandler } from './use-remove-item'
 import type { UpdateItemHook, LineItem } from '../types/cart'
 import {
-  getCartId,
-  checkoutToCart,
+  getCartId, normalizeCart
 } from '../utils'
 import { Mutation, MutationCheckoutLineItemsUpdateArgs } from '../../schema'
 
@@ -60,7 +59,7 @@ export const handler: any = {
       }),
     })
 
-    return checkoutToCart(res)
+    return normalizeCart(res)
   },
   useHook:
     ({ fetch }: MutationHookContext<UpdateItemHook>) =>

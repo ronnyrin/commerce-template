@@ -21,8 +21,7 @@ export type RemoveItemActionInput<T = any> = T extends LineItem
 export default useRemoveItem as UseRemoveItem<typeof handler>
 
 import {
-  getCartId,
-  checkoutToCart,
+  getCartId, normalizeCart
 } from '../utils'
 
 export const handler: any = {
@@ -37,7 +36,7 @@ export const handler: any = {
         lineItemIds: [itemId],
       }),
     })
-    return checkoutToCart(res)
+    return normalizeCart(res)
   },
   useHook:
     ({ fetch }: MutationHookContext<RemoveItemHook>) =>
