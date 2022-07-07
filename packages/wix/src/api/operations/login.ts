@@ -3,7 +3,6 @@ import type { OperationContext } from '@vercel/commerce/api/operations'
 import type { LoginOperation } from '../../types/login'
 import type { WixConfig, Provider } from '..'
 import {
-  customerAccessTokenCreateMutation,
   setCustomerToken,
   throwUserErrors,
 } from '../../utils'
@@ -13,7 +12,7 @@ export default function loginOperation({
   commerce,
 }: OperationContext<Provider>) {
   async function login<T extends LoginOperation>({
-    query = customerAccessTokenCreateMutation,
+    query = '',
     variables,
     config,
   }: {

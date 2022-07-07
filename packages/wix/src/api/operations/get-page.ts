@@ -10,7 +10,6 @@ import {
   Page as ShopifyPage,
 } from '../../../schema'
 import { GetPageOperation } from '../../types/page'
-import getPageQuery from '../../utils/queries/get-page-query'
 
 export default function getPageOperation({
   commerce,
@@ -30,7 +29,7 @@ export default function getPageOperation({
   ): Promise<T['data']>
 
   async function getPage<T extends GetPageOperation>({
-    query = getPageQuery,
+    query = '',
     variables,
     config,
   }: {

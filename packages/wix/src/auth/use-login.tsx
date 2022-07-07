@@ -8,7 +8,6 @@ import useCustomer from '../customer/use-customer'
 import {
   setCustomerToken,
   throwUserErrors,
-  customerAccessTokenCreateMutation,
 } from '../utils'
 import { Mutation, MutationCustomerAccessTokenCreateArgs } from '../../schema'
 
@@ -16,7 +15,7 @@ export default useLogin as UseLogin<typeof handler>
 
 export const handler: MutationHook<LoginHook> = {
   fetchOptions: {
-    query: customerAccessTokenCreateMutation,
+    query: '',
   },
   async fetcher({ input: { email, password }, options, fetch }) {
     if (!(email && password)) {

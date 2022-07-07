@@ -1,7 +1,6 @@
 import { FetcherOptions } from '@vercel/commerce/utils/types'
 import { CustomerAccessTokenCreateInput } from '../../schema'
 import { setCustomerToken } from './customer-token'
-import { customerAccessTokenCreateMutation } from './mutations'
 import throwUserErrors from './throw-user-errors'
 
 const handleLogin = (data: any) => {
@@ -24,7 +23,7 @@ export const handleAutomaticLogin = async (
 ) => {
   try {
     const loginData = await fetch({
-      query: customerAccessTokenCreateMutation,
+      query: '',
       variables: {
         input,
       },

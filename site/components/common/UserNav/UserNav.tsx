@@ -6,7 +6,7 @@ import useCart from '@framework/cart/use-cart'
 import { useUI } from '@components/ui/context'
 import { Heart, Bag, Menu } from '@components/icons'
 import CustomerMenuContent from './CustomerMenuContent'
-// import useCustomer from '@framework/customer/use-customer'
+import useCustomer from '@framework/customer/use-customer'
 import React from 'react'
 import {
   Dropdown,
@@ -22,7 +22,7 @@ const UserNav: React.FC<{
   className?: string
 }> = ({ className }) => {
   const { data } = useCart()
-  // const { data: isCustomerLoggedIn } = useCustomer()
+  const { data: isCustomerLoggedIn } = useCustomer()
   const {
     toggleSidebar,
     closeSidebarIfPresent,
@@ -33,8 +33,8 @@ const UserNav: React.FC<{
 
   const itemsCount = data?.lineItems.reduce(countItem, 0) ?? 0
   const DropdownTrigger =
-    // isCustomerLoggedIn
-    // ? DropdownTriggerInst
+    isCustomerLoggedIn
+    ? DropdownTriggerInst :
     React.Fragment
 
   return (
@@ -74,7 +74,7 @@ const UserNav: React.FC<{
                 <button
                   aria-label="Menu"
                   className={s.avatarButton}
-                  onClick={() => (openModal())}
+                  onClick={() => (isCustomerLoggedIn ? null : openModal())}
                 >
                   <Avatar />
                 </button>

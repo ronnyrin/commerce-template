@@ -6,7 +6,6 @@ import {
   MutationCustomerActivateByUrlArgs,
 } from '../../schema'
 import { Mutation } from '../../schema'
-import { customerActivateByUrlMutation } from './mutations'
 
 const handleAccountActivation = async (
   fetch: <T = any, B = Body>(options: FetcherOptions<B>) => Promise<T>,
@@ -17,7 +16,7 @@ const handleAccountActivation = async (
       Mutation,
       MutationCustomerActivateArgs
     >({
-      query: customerActivateByUrlMutation,
+      query: '',
       variables: {
         input,
       },

@@ -1,5 +1,0 @@
-export { default as customerCreateMutation } from './customer-create'
-export { default as checkoutLineItemUpdateMutation } from './checkout-line-item-update'
-export { default as checkoutLineItemRemoveMutation } from './checkout-line-item-remove'
-export { default as customerAccessTokenCreateMutation } from './customer-access-token-create'
-export { default as customerActivateByUrlMutation } from './customer-activate-by-url'
