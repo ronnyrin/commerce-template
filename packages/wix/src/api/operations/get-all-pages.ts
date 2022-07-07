@@ -1,57 +1,17 @@
 import type {
   OperationContext,
-  OperationOptions,
+  OperationOptions
 } from '@vercel/commerce/api/operations'
-import {
-  GetAllPagesQuery,
-  GetAllPagesQueryVariables,
-  PageEdge,
-} from '../../../schema'
-import { normalizePages } from '../../utils'
 import type { WixConfig, Provider } from '..'
-import type { GetAllPagesOperation, Page } from '../../types/page'
-import getAllPagesQuery from '../../utils/queries/get-all-pages-query'
 
 export default function getAllPagesOperation({
-  commerce,
+  commerce
 }: OperationContext<Provider>) {
-  async function getAllPages<T extends GetAllPagesOperation>(opts?: {
+  async function getAllPages(opts?: {
     config?: Partial<WixConfig>
     preview?: boolean
-  }): Promise<T['data']>
-
-  async function getAllPages<T extends GetAllPagesOperation>(
-    opts: {
-      config?: Partial<WixConfig>
-      preview?: boolean
-    } & OperationOptions
-  ): Promise<T['data']>
-
-  async function getAllPages<T extends GetAllPagesOperation>({
-    query = getAllPagesQuery,
-    config,
-    variables,
-  }: {
-    url?: string
-    config?: Partial<WixConfig>
-    variables?: GetAllPagesQueryVariables
-    preview?: boolean
-    query?: string
-  } = {}): Promise<T['data']> {
-    const {
-      fetcher,
-      locales = ['en-US', 'es'],
-    } = commerce.getConfig(config)
-
-    const { data } = await fetcher({})
-
-    return {
-      pages: locales.reduce<Page[]>(
-        (arr, locale) =>
-          arr.concat(normalizePages(data.pages.edges as PageEdge[], locale)),
-        []
-      ),
-    }
+  }): Promise<any> {
+    return Promise.resolve({ pages: [] });
   }
 
   return getAllPages

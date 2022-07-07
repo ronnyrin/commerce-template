@@ -26,10 +26,6 @@ const fetcher: any = async ({
     Cookies.set(WIX_REFRESH_TOKEN_COOKIE, json.refreshToken!, {expires: WIX_COOKIE_EXPIRE})
   }
 
-  if (!url) {
-    return Promise.resolve({ data: { pages: { edges: [] }, products: { edges: [] } } })
-  }
-
   return handleFetchResponse(
     await fetch(url[0] === '/' ? url : `${API_URL}/${url}`, {
       method,
