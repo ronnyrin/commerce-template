@@ -31,7 +31,7 @@ const fetcher: any = async ({
   }
 
   return handleFetchResponse(
-    await fetch(`${API_URL}/${url}`, {
+    await fetch(url[0] === '/' ? url : `${API_URL}/${url}`, {
       method,
       ...(variables && { body: variables }),
       headers: {

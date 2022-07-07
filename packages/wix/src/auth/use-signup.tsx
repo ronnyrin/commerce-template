@@ -4,19 +4,13 @@ import { CommerceError } from '@vercel/commerce/utils/errors'
 import useSignup, { UseSignup } from '@vercel/commerce/auth/use-signup'
 import type { SignupHook } from '../types/signup'
 import useCustomer from '../customer/use-customer'
-import { Mutation, MutationCustomerCreateArgs } from '../../schema'
-
-import {
-  handleAutomaticLogin,
-  throwUserErrors,
-  customerCreateMutation,
-} from '../utils'
 
 export default useSignup as UseSignup<typeof handler>
 
 export const handler: MutationHook<SignupHook> = {
   fetchOptions: {
-    query: customerCreateMutation,
+    url: '/api/signup',
+    method: 'POST',
   },
   async fetcher({
     input: { firstName, lastName, email, password },
@@ -30,23 +24,16 @@ export const handler: MutationHook<SignupHook> = {
       })
     }
 
-    const { customerCreate } = await fetch<
-      Mutation,
-      MutationCustomerCreateArgs
-    >({
+    await fetch({
       ...options,
-      variables: {
-        input: {
+      url: '/api/signup',
+      variables: JSON.stringify({
           firstName,
           lastName,
           email,
           password,
-        },
-      },
+      }),
     })
-
-    throwUserErrors(customerCreate?.customerUserErrors)
-    await handleAutomaticLogin(fetch, { email, password })
 
     return null
   },
