@@ -13,7 +13,7 @@ export type BrandEdge = {
 export type Brands = BrandEdge[]
 
 const getBrands = async (config: WixConfig): Promise<any> => {
-  return Promise.resolve({brands: []});
+  return Promise.resolve([]);
 }
 
 export default getBrands
