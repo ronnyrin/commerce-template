@@ -35,7 +35,9 @@ export const handler: any = {
       const data = await fetch({
         url: 'stores/v1/products/query',
         method,
+        variables: JSON.stringify({query: {filter: JSON.stringify({'name': {'$startsWith': input.search}})}}),
       })
+
       products = data.products
     }
 
