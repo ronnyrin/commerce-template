@@ -23,11 +23,17 @@ export const handler: any = {
     const { categoryId } = input
     const method = 'POST'
     let products
+    let sortType = input.sort.split('-')[0];
+    if (sortType === 'latest' || sortType === 'trending') {
+      sortType = 'lastUpdated'
+    }
+    const sortValue = input.sort.split('-')[1];
+    const sortQuery = {sort: JSON.stringify([{[sortType]: sortValue}])}
     if (categoryId) {
       const data = await fetch({
         url: 'stores/v1/products/query',
         method,
-        variables: JSON.stringify({query: {filter: JSON.stringify({'collections.id': categoryId})}}),
+        variables: JSON.stringify({query: {filter: JSON.stringify({'collections.id': categoryId}), ...(sortType && sortQuery)}}),
       })
 
       products = data.products
@@ -35,7 +41,7 @@ export const handler: any = {
       const data = await fetch({
         url: 'stores/v1/products/query',
         method,
-        variables: JSON.stringify({query: {filter: JSON.stringify({'name': {'$startsWith': input.search}})}}),
+        variables: JSON.stringify({query: {filter: JSON.stringify({'name': {'$startsWith': input.search}}), ...(sortType && sortQuery)}}),
       })
 
       products = data.products
