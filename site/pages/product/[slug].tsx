@@ -8,7 +8,7 @@ import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
 
-export async function getServerSideProps({
+export async function getStaticProps({
   params,
   locale,
   locales,
@@ -20,10 +20,13 @@ export async function getServerSideProps({
   const productPromise = commerce.getProduct({
     variables: { slug: params!.slug },
     config,
+    preview,
   })
 
   const allProductsPromise = commerce.getAllProducts({
+    variables: { first: 4 },
     config,
+    preview,
   })
   const { pages } = await pagesPromise
   const { categories } = await siteInfoPromise
@@ -41,31 +44,31 @@ export async function getServerSideProps({
       relatedProducts,
       categories,
     },
-    // revalidate: 200,
+    revalidate: 200,
   }
 }
 
-// export async function getStaticPaths({ locales }: GetStaticPathsContext) {
-//   const { products } = await commerce.getAllProductPaths()
-//
-//   return {
-//     paths: locales
-//       ? locales.reduce<string[]>((arr, locale) => {
-//           // Add a product path for every locale
-//           products.forEach((product: any) => {
-//             arr.push(`/${locale}/product${product.path}`)
-//           })
-//           return arr
-//         }, [])
-//       : products.map((product: any) => `/product${product.path}`),
-//     fallback: 'blocking',
-//   }
-// }
+export async function getStaticPaths({ locales }: GetStaticPathsContext) {
+  const { products } = await commerce.getAllProductPaths()
+
+  return {
+    paths: locales
+      ? locales.reduce<string[]>((arr, locale) => {
+          // Add a product path for every locale
+          products.forEach((product: any) => {
+            arr.push(`/${locale}/product${product.path}`)
+          })
+          return arr
+        }, [])
+      : products.map((product: any) => `/product${product.path}`),
+    fallback: 'blocking',
+  }
+}
 
 export default function Slug({
   product,
   relatedProducts,
-}: InferGetStaticPropsType<typeof getServerSideProps>) {
+}: InferGetStaticPropsType<typeof getStaticProps>) {
   const router = useRouter()
 
   return router.isFallback ? (

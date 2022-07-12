@@ -12,9 +12,13 @@ export default function getAllProductsOperation({
   async function getAllProducts<T extends GetAllProductsOperation>({
     url = 'stores/v1/products/query',
     config,
+    variables,
+    preview
   }: {
     url?: string
     config?: Partial<WixConfig>
+    variables?: T['variables']
+    preview?: boolean
   } = {}): Promise<T['data']> {
     const { fetcher } = commerce.getConfig(config)
     const { products } = await fetcher({url})

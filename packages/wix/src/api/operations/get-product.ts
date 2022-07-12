@@ -13,10 +13,12 @@ export default function getProductOperation({
     url = 'stores/v1/products/query',
     variables,
     config,
+    preview
   }: {
     url?: string
     variables?: any,
     config?: Partial<WixConfig>
+    preview?: boolean
   } = {}): Promise<T['data']> {
     const { fetcher } = commerce.getConfig(config)
     const { products } = await fetcher({url, method: 'POST', variables: JSON.stringify({query: {filter: JSON.stringify({slug: variables.slug})}})})

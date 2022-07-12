@@ -3,13 +3,7 @@ import type {
   OperationOptions,
 } from '@vercel/commerce/api/operations'
 import { GetAllProductPathsOperation } from '../../types/product'
-import {
-  GetAllProductPathsQuery,
-  GetAllProductPathsQueryVariables,
-  ProductEdge,
-} from '../../../schema'
 import type { WixConfig, Provider } from '..'
-import { getAllProductsQuery } from '../../utils'
 
 export default function getAllProductPathsOperation({
   commerce,
@@ -29,23 +23,23 @@ export default function getAllProductPathsOperation({
   ): Promise<T['data']>
 
   async function getAllProductPaths<T extends GetAllProductPathsOperation>({
-    query = getAllProductsQuery,
+    url = 'stores/v1/products/query',
     config,
     variables,
+    preview
   }: {
-    query?: string
-    config?: WixConfig
+    url?: string
+    config?: Partial<WixConfig>
     variables?: T['variables']
-  } = {}): Promise<any> {
-    config = commerce.getConfig(config)
-
-    const { data } = await config.fetcher({})
-
-    // return {
-    //   products: data.products.edges.map(({ node: { handle } }) => ({
-    //     path: `/${handle}`,
-    //   })),
-    // }
+    preview?: boolean
+  } = {}): Promise<T['data']> {
+    const { fetcher } = commerce.getConfig(config)
+    const { products } = await fetcher({url})
+    return {
+      products: products.map(({slug}: any) =>
+        ({path: `/${slug}`})
+      ),
+    }
   }
 
   return getAllProductPaths
