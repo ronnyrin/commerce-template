@@ -21,7 +21,6 @@ export const handler: MutationHook<LoginHook> = {
 
     await fetch({
       ...options,
-      url: '/api/login',
       variables: JSON.stringify({
         email,
         password,

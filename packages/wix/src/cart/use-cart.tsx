@@ -18,8 +18,6 @@ export const handler: any = {
     try {
       const { cart } = await fetch({
         ...options,
-        method: 'GET',
-        url: 'ecom/v1/carts/current',
       })
       const { checkoutId } = await fetch({
         method: 'POST',

@@ -2,7 +2,7 @@ import { SWRHook } from '@vercel/commerce/utils/types'
 import useSearch, { UseSearch } from '@vercel/commerce/product/use-search'
 
 import {
-  normalizeProduct,
+  normalizeProduct
 } from '../utils'
 
 export type SearchProductsInput = {
@@ -17,58 +17,54 @@ export default useSearch as UseSearch<typeof handler>
 
 export const handler: any = {
   fetchOptions: {
-    query: '',
+    url: 'stores/v1/products/query',
+    method: 'POST'
   },
   async fetcher({ input, options, fetch }: any) {
     const { categoryId } = input
-    const method = 'POST'
     let products
-    let sortType = input.sort.split('-')[0];
+    let sortType = input.sort.split('-')[0]
     if (sortType === 'latest' || sortType === 'trending') {
       sortType = 'lastUpdated'
     }
-    const sortValue = input.sort.split('-')[1];
-    const sortQuery = {sort: JSON.stringify([{[sortType]: sortValue}])}
+    const sortValue = input.sort.split('-')[1]
+    const sortQuery = { sort: JSON.stringify([{ [sortType]: sortValue }]) }
+    let variables
+
     if (categoryId) {
-      const data = await fetch({
-        url: 'stores/v1/products/query',
-        method,
-        variables: JSON.stringify({query: {filter: JSON.stringify({'collections.id': categoryId}), ...(sortType && sortQuery)}}),
-      })
-
-      products = data.products
+      variables = JSON.stringify({ query: { filter: JSON.stringify({ 'collections.id': categoryId }), ...(sortType && sortQuery) } })
     } else {
-      const data = await fetch({
-        url: 'stores/v1/products/query',
-        method,
-        variables: JSON.stringify({query: {filter: JSON.stringify({'name': {'$startsWith': input.search}}), ...(sortType && sortQuery)}}),
-      })
-
-      products = data.products
+      variables = JSON.stringify({ query: { filter: JSON.stringify({ 'name': { '$startsWith': input.search } }), ...(sortType && sortQuery) } })
     }
+
+    const data = await fetch({
+      ...options,
+      variables
+    })
+    products = data.products
 
     return {
       products: products?.map((p: any) =>
         normalizeProduct(p)
       ),
-      found: !!products?.length,
+      found: !!products?.length
     }
   },
   useHook:
     ({ useData }: any) =>
-    (input: any = {}) => {
-      return useData({
-        input: [
-          ['search', input.search],
-          ['categoryId', input.categoryId],
-          ['brandId', input.brandId],
-          ['sort', input.sort],
-          ['locale', input.locale],
-        ],
-        swrOptions: {
-          revalidateOnFocus: false,
-          ...input.swrOptions,
-        },
-      })
-    },
+      (input: any = {}) => {
+        return useData({
+          input: [
+            ['search', input.search],
+            ['categoryId', input.categoryId],
+            ['brandId', input.brandId],
+            ['sort', input.sort],
+            ['locale', input.locale]
+          ],
+          swrOptions: {
+            revalidateOnFocus: false,
+            ...input.swrOptions
+          }
+        })
+      }
 }
