@@ -8,7 +8,6 @@ export type LoginTypes = {
 }
 
 export type LoginHook<T extends LoginTypes = LoginTypes> = {
-  cookies: any
   data: null
   actionInput: LoginBody
   fetcherInput: LoginBody

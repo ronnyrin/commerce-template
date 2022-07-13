@@ -20,7 +20,7 @@ const loginEndpoint: GetAPISchema<
 
   try {
     const body = req.body ?? {}
-    return await handlers['login']({ ...ctx, body, cookies: req.cookies })
+    return await handlers['login']({ ...ctx, body })
   } catch (error) {
     console.error(error)
 

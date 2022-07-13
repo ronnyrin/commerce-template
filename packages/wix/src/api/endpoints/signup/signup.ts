@@ -4,7 +4,7 @@ import { WIX_ACCESS_TOKEN_COOKIE, WIX_CUSTOMER_TOKEN_COOKIE, WIX_COOKIE_EXPIRE }
 const signup: SignupEndpoint['handlers']['signup'] = async ({
   res,
   body: { firstName, lastName, email, password },
-  cookies,
+  req: {cookies},
   config,
   // commerce
 }) => {

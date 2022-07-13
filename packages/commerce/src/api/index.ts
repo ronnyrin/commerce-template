@@ -49,7 +49,7 @@ export type EndpointContext<
 export type EndpointSchemaBase = {
   options: {}
   handlers: {
-    [k: string]: { data?: any; body?: any, cookies? :any }
+    [k: string]: { data?: any; body?: any }
   }
 }
 
@@ -67,7 +67,6 @@ export type EndpointHandlers<
     EndpointHandlers<C, E>,
     NonNullable<E['handlers'][H]>['data'],
     NonNullable<E['handlers'][H]>['body'],
-    NonNullable<E['handlers'][H]>['cookies'],
     E['options']
   >
 }

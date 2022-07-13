@@ -10,7 +10,6 @@ export type SignupTypes = {
 }
 
 export type SignupHook<T extends SignupTypes = SignupTypes> = {
-  cookies: any
   data: null
   body: T['body']
   actionInput: T['body']

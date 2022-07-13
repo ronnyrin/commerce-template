@@ -20,7 +20,7 @@ const signupEndpoint: GetAPISchema<any, SignupSchema>['endpoint']['handler'] =
 
     try {
       const body = { ...req.body, cartId }
-      return await handlers['signup']({ ...ctx, body, cookies })
+      return await handlers['signup']({ ...ctx, body })
     } catch (error) {
       console.error(error)
 

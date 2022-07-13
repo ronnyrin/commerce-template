@@ -4,7 +4,7 @@ import { WIX_ACCESS_TOKEN_COOKIE, WIX_CUSTOMER_TOKEN_COOKIE, WIX_COOKIE_EXPIRE }
 const login: LoginEndpoint['handlers']['login'] = async ({
   res,
   body: { email, password },
-  cookies,
+  req: {cookies},
   config,
   // commerce
 }) => {
