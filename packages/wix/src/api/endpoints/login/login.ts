@@ -8,7 +8,6 @@ const login: LoginEndpoint['handlers']['login'] = async ({
   config,
   // commerce
 }) => {
-  console.log('fdsfds')
   if (!(email && password)) {
     return res.status(400).json({
       data: null,
