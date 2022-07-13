@@ -3,7 +3,7 @@ import type { MutationHook } from '@vercel/commerce/utils/types'
 import useLogout, { UseLogout } from '@vercel/commerce/auth/use-logout'
 import type { LogoutHook } from '../types/logout'
 import useCustomer from '../customer/use-customer'
-import { getCustomerToken, setCustomerToken } from '../utils/customer-token'
+import { setCustomerToken } from '../utils/customer-token'
 
 export default useLogout as UseLogout<typeof handler>
 
@@ -11,13 +11,7 @@ export const handler: MutationHook<LogoutHook> = {
   fetchOptions: {
     query: '',
   },
-  async fetcher({ options, fetch }) {
-    await fetch({
-      ...options,
-      variables: {
-        customerAccessToken: getCustomerToken(),
-      },
-    })
+  async fetcher({ options }) {
     setCustomerToken(null)
     return null
   },

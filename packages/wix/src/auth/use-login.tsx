@@ -5,17 +5,12 @@ import useLogin, { UseLogin } from '@vercel/commerce/auth/use-login'
 import type { LoginHook } from '../types/login'
 import useCustomer from '../customer/use-customer'
 
-import {
-  setCustomerToken,
-  throwUserErrors,
-} from '../utils'
-import { Mutation, MutationCustomerAccessTokenCreateArgs } from '../../schema'
-
 export default useLogin as UseLogin<typeof handler>
 
 export const handler: MutationHook<LoginHook> = {
   fetchOptions: {
-    query: '',
+    url: '/api/login',
+    method: 'POST',
   },
   async fetcher({ input: { email, password }, options, fetch }) {
     if (!(email && password)) {
@@ -24,24 +19,14 @@ export const handler: MutationHook<LoginHook> = {
       })
     }
 
-    const { customerAccessTokenCreate } = await fetch<
-      Mutation,
-      MutationCustomerAccessTokenCreateArgs
-    >({
+    await fetch({
       ...options,
-      variables: {
-        input: { email, password },
-      },
+      url: '/api/login',
+      variables: JSON.stringify({
+        email,
+        password,
+      }),
     })
-
-    throwUserErrors(customerAccessTokenCreate?.customerUserErrors)
-
-    const customerAccessToken = customerAccessTokenCreate?.customerAccessToken
-    const accessToken = customerAccessToken?.accessToken
-
-    if (accessToken) {
-      setCustomerToken(accessToken)
-    }
 
     return null
   },

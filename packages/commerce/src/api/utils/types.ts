@@ -35,7 +35,7 @@ export type APIHandler<
   Cookies = any,
   Options extends {} = {}
 > = (
-  context: APIHandlerContext<C, H, Data, Options> & { body: Body } & {cookies: Cookies}
+  context: APIHandlerContext<C, H, Data, Options> & { body: Body } & {cookies?: Cookies}
 ) => void | Promise<void>
 
 export type APIHandlers<C extends CommerceAPI> = {
