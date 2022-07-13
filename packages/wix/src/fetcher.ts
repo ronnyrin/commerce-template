@@ -1,5 +1,5 @@
 import { API_URL, WIX_ACCESS_TOKEN_COOKIE, WIX_DOMAIN, WIX_REFRESH_TOKEN_COOKIE, WIX_COOKIE_EXPIRE } from './const'
-import { handleFetchResponse } from './utils'
+import { handleFetchResponse, getCustomerToken } from './utils'
 import Cookies from 'js-cookie'
 
 const fetcher: any = async ({
@@ -9,6 +9,7 @@ const fetcher: any = async ({
 }: any) => {
   let accessToken = Cookies.get(WIX_ACCESS_TOKEN_COOKIE)
   let refreshToken = Cookies.get(WIX_REFRESH_TOKEN_COOKIE)
+  let customerToken = getCustomerToken();
   if (!accessToken) {
     const res = await fetch(
       `${API_URL}/v1/meta-site/session-token`,
@@ -17,6 +18,7 @@ const fetcher: any = async ({
         headers: {
           'origin': WIX_DOMAIN!,
           'Content-Type': 'application/json',
+          ...(customerToken && {'member-token': customerToken}),
           ...(refreshToken && {'refresh-token': refreshToken})
         }
       })
