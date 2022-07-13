@@ -1,13 +1,13 @@
-## Shopify Provider
+## Wix Provider
 
-**Demo:** https://shopify.demo.vercel.store/
+**Demo:** https://wix.demo.vercel.store/
 
-Before getting started, a [Shopify](https://www.shopify.com/) account and store is required before using the provider.
+Before getting started, a [Wix](https://www.wix.com/) account and store is required before using the provider.
 
 Next, copy the `.env.template` file in this directory to `.env.local` in the main directory (which will be ignored by Git):
 
 ```bash
-cp packages/shopify/.env.template .env.local
+cp packages/wix/.env.template .env.local
 ```
 
 Then, set the environment variables in `.env.local` to match the ones from your store.
@@ -61,9 +61,9 @@ const CartSidebarView: FC = () => {
 
 ## APIs
 
-Collections of APIs to fetch data from a Shopify store.
+Collections of APIs to fetch data from a Wix store.
 
-The data is fetched using the [Shopify JavaScript Buy SDK](https://github.com/Shopify/js-buy-sdk#readme). Read the [Shopify Storefront API reference](https://shopify.dev/docs/storefront-api/reference) for more information.
+The data is fetched using the [Wix JavaScript Buy SDK](https://github.com/Wix/js-buy-sdk#readme). Read the [Wix Storefront API reference](https://wix.dev/docs/storefront-api/reference) for more information.
 
 ### getProduct
 
@@ -120,16 +120,4 @@ const pages = await getAllPages({
   variables: { first: 12 },
   config,
 })
-```
-
-## Code generation
-
-This provider makes use of GraphQL code generation. The [schema.graphql](./schema.graphql) and [schema.d.ts](./schema.d.ts) files contain the generated types & schema introspection results.
-
-When developing the provider, changes to any GraphQL operations should be followed by re-generation of the types and schema files:
-
-From the project root dir, run:
-
-```sh
-yarn generate:shopify
 ```

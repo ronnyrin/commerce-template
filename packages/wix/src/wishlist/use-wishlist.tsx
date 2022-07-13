@@ -1,8 +1,4 @@
-// TODO: replace this hook and other wishlist hooks with a handler, or remove them if
-// Shopify doesn't have a wishlist
-
 import { HookFetcher } from '@vercel/commerce/utils/types'
-import { Product } from '../../schema'
 
 const defaultOpts = {}
 
@@ -12,7 +8,7 @@ export type Wishlist = {
       product_id: number
       variant_id: number
       id: number
-      product: Product
+      product: any
     }
   ]
 }

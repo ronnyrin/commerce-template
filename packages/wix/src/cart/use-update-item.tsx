@@ -15,7 +15,6 @@ import type { UpdateItemHook, LineItem } from '../types/cart'
 import {
   getCartId, normalizeCart
 } from '../utils'
-import { Mutation, MutationCheckoutLineItemsUpdateArgs } from '../../schema'
 
 export type UpdateItemActionInput<T = any> = T extends LineItem
   ? Partial<UpdateItemHook['actionInput']>
@@ -43,10 +42,7 @@ export const handler: any = {
         message: 'The item quantity has to be a valid integer',
       })
     }
-    const res = await fetch<
-      Mutation,
-      MutationCheckoutLineItemsUpdateArgs
-    >({
+    const res = await fetch({
       url: `ecom/v1/carts/${getCartId()}/update-line-items-quantity`,
       ...options,
       variables: JSON.stringify({

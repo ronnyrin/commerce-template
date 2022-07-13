@@ -1,6 +1,5 @@
 import type {
   OperationContext,
-  OperationOptions
 } from '@vercel/commerce/api/operations'
 import type { WixConfig, Provider } from '..'
 

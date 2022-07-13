@@ -1,7 +1,6 @@
 import type {
   OperationContext,
 } from '@vercel/commerce/api/operations'
-import { GetSiteInfoQueryVariables } from '../../../schema'
 import type { WixConfig, Provider } from '..'
 import { GetSiteInfoOperation } from '../../types/site'
 
@@ -16,7 +15,7 @@ export default function getSiteInfoOperation({
     query?: string
     config?: Partial<WixConfig>
     preview?: boolean
-    variables?: GetSiteInfoQueryVariables
+    variables?: any
   } = {}): Promise<T['data']> {
     const cfg = commerce.getConfig(config)
 

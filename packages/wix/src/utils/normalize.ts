@@ -1,14 +1,5 @@
-import type { Page } from '../types/page'
-import type { Product } from '../types/product'
 import type { Cart, LineItem } from '../types/cart'
 import type { Category } from '../types/site'
-
-import {
-  SelectedOption,
-  ProductVariantConnection,
-  Page as ShopifyPage,
-  PageEdge
-} from '../../schema'
 import { WIX_VIEWER_URL, WIX_DOMAIN } from '../const'
 
 const money = ({ price, currency }: any) => {
@@ -41,42 +32,6 @@ const normalizeProductOption = ({
 
 const normalizeProductImages = ({ items }: any) =>
   items?.map((i: any) => i.image)
-
-const normalizeProductVariants = ({ edges }: ProductVariantConnection) => {
-  return edges?.map(
-    ({
-      node: {
-        id,
-        selectedOptions,
-        sku,
-        title,
-        priceV2,
-        compareAtPriceV2,
-        requiresShipping,
-        availableForSale
-      }
-    }) => {
-      return {
-        id,
-        name: title,
-        sku: sku ?? id,
-        price: +priceV2.amount,
-        listPrice: +compareAtPriceV2?.amount,
-        requiresShipping,
-        availableForSale,
-        options: selectedOptions.map(({ name, value }: SelectedOption) => {
-          const options = normalizeProductOption({
-            id,
-            name,
-            values: [value]
-          })
-
-          return options
-        })
-      }
-    }
-  )
-}
 
 export function normalizeProduct({
   id,
@@ -156,18 +111,6 @@ function normalizeLineItem({
     options: descriptionLines.map((line: any) => ({name: line.name.translated, value: line.colorInfo?.code || line.plainText?.translated}))
   }
 }
-
-export const normalizePage = (
-  { title: name, handle, ...page }: ShopifyPage,
-  locale: string = 'en-US'
-): Page => ({
-  ...page,
-  url: `/${locale}/${handle}`,
-  name
-})
-
-export const normalizePages = (edges: PageEdge[], locale?: string): Page[] =>
-  edges?.map((edge) => normalizePage(edge.node, locale))
 
 export const normalizeCategory = ({
   name,

@@ -2,13 +2,7 @@ import type {
   OperationContext,
   OperationOptions,
 } from '@vercel/commerce/api/operations'
-import { normalizePage } from '../../utils'
 import type { WixConfig, Provider } from '..'
-import {
-  GetPageQuery,
-  GetPageQueryVariables,
-  Page as ShopifyPage,
-} from '../../../schema'
 import { GetPageOperation } from '../../types/page'
 
 export default function getPageOperation({
@@ -38,13 +32,8 @@ export default function getPageOperation({
     config?: Partial<WixConfig>
     preview?: boolean
   }): Promise<T['data']> {
-    const { fetcher, locale } = commerce.getConfig(config)
+    return Promise.resolve({page: undefined})
 
-    const {
-      data: { node: page },
-    } = await fetcher({})
-
-    return page ? { page: normalizePage(page as ShopifyPage, locale) } : {}
   }
 
   return getPage
