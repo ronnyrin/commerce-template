@@ -6,7 +6,6 @@ import { Layout } from '@components/common'
 import { Button, Text, Container } from '@components/ui'
 import { Bag, Cross, Check, MapPin, CreditCard } from '@components/icons'
 import { CartItem } from '@components/cart'
-import { useUI } from '@components/ui/context'
 
 export async function getStaticProps({
   preview,

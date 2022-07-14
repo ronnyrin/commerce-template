@@ -1,6 +1,7 @@
 import type { Cart, LineItem } from '../types/cart'
 import type { Category } from '../types/site'
 import { WIX_VIEWER_URL, WIX_DOMAIN } from '../const'
+import { getCustomerToken } from './customer-token'
 
 const money = ({ price, currency }: any) => {
   return {
@@ -68,9 +69,13 @@ export function normalizeProduct({
 }
 
 export function normalizeCart({cart, checkoutId}: any): Cart {
+  const token = getCustomerToken()
+  const baseUrl = WIX_VIEWER_URL!.split('/').slice(0, 3).join('/');
+  const checkoutUrl = `${WIX_VIEWER_URL}/checkout?appSectionParams={"checkoutId":"${checkoutId}","successUrl":"https://${WIX_DOMAIN}/success"}`;
+  const redirectUrl = `${baseUrl}/_serverless/vercel-cookie-redirect/redirect-to-checkout?token=${token}&domain=${WIX_VIEWER_URL}&url=${checkoutUrl}`
   return {
     id: cart.id,
-    url: `${WIX_VIEWER_URL}/checkout?appSectionParams={"checkoutId":"${checkoutId}","successUrl":"https://${WIX_DOMAIN}/success"}`,
+    url: redirectUrl,
     customerId: '',
     email: '',
     createdAt: cart.createdDate,
