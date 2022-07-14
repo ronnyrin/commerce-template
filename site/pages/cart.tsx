@@ -27,7 +27,6 @@ export default function Cart() {
   const error = null
   const success = null
   const { data, isLoading, isEmpty } = useCart()
-  const { openSidebar, setSidebarView } = useUI()
 
   const { price: subTotal } = usePrice(
     data && {
@@ -43,8 +42,7 @@ export default function Cart() {
   )
 
   const goToCheckout = () => {
-    openSidebar()
-    setSidebarView('CHECKOUT_VIEW')
+    window.open(data.url, '_top')
   }
 
   return (
@@ -175,7 +173,7 @@ export default function Cart() {
                       Proceed to Checkout ({total})
                     </Button>
                   ) : (
-                    <Button href="/checkout" Component="a" width="100%">
+                    <Button Component="a" width="100%" onClick={goToCheckout}>
                       Proceed to Checkout
                     </Button>
                   )}
