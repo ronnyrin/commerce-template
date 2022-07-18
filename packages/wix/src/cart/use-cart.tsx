@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import useCommerceCart, { UseCart } from '@vercel/commerce/cart/use-cart'
-import { normalizeCart } from '../utils'
+import { normalizeCart, getCustomerToken } from '../utils'
 import Cookies from 'js-cookie'
 
 import {
@@ -19,11 +19,15 @@ export const handler: any = {
       const { cart } = await fetch({
         ...options,
       })
+
       const { checkoutId } = await fetch({
-        method: 'POST',
         url: `ecom/v1/carts/${cart.id}/create-checkout`,
         variables: JSON.stringify({channelType: 'WEB'})
       })
+
+      if (getCustomerToken()) {
+        await fetch({url: '/api/login'});
+      }
 
       return normalizeCart({
         cart,
