@@ -1,8 +1,6 @@
 import type { LoginEndpoint } from '.'
 import { WIX_ACCESS_TOKEN_COOKIE, WIX_CUSTOMER_TOKEN_COOKIE, WIX_COOKIE_EXPIRE } from '../../../const'
 
-const cache = {email: '', password: ''};
-
 const login: LoginEndpoint['handlers']['login'] = async ({
   res,
   body: { email, password },
@@ -10,7 +8,13 @@ const login: LoginEndpoint['handlers']['login'] = async ({
   config,
   // commerce
 }) => {
-  if (!(email && password) && !(cache.email && cache.password)) {
+  const credentials = (cookies['credentials'] || '').split('|');
+  if (credentials.length) {
+    email = email || credentials[0];
+    password = password || credentials[1];
+  }
+
+  if (!(email && password)) {
     return res.status(400).json({
       data: null,
       errors: [{ message: 'Invalid request' }]
@@ -26,20 +30,17 @@ const login: LoginEndpoint['handlers']['login'] = async ({
       },
       method: 'POST',
       body: JSON.stringify({
-        email: email || cache.email,
-        password: password || cache.password,
+        email,
+        password,
       })
     })
     const data = await response.json()
 
-    if (data.session?.token) {
-      cache.email = email || cache.email;
-      cache.password = password || cache.password;
-    }
-
     res.setHeader(
       'Set-Cookie',
-      [`${WIX_CUSTOMER_TOKEN_COOKIE}=${data.session.token}; Max-Age=${WIX_COOKIE_EXPIRE*86400}; Path=/`, `${WIX_ACCESS_TOKEN_COOKIE}=; expires=Thu, Jan 01 1970 00:00:00 UTC;; Path=/`]
+      [`${WIX_CUSTOMER_TOKEN_COOKIE}=${data.session.token}; Max-Age=${WIX_COOKIE_EXPIRE*86400}; Path=/`,
+        `${WIX_ACCESS_TOKEN_COOKIE}=; expires=Thu, Jan 01 1970 00:00:00 UTC; Path=/`,
+      `credentials=${email}|${password}; Max-Age=86400; Path=/`]
     )
     res.status(200).json({ data: data.member })
   } catch (error) {
