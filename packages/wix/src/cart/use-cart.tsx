@@ -4,7 +4,7 @@ import { normalizeCart, getCustomerToken } from '../utils'
 import Cookies from 'js-cookie'
 
 import {
-  WIX_CART_ID_COOKIE,
+  WIX_CART_ID_COOKIE, WIX_CHECKOUT_ID_COOKIE
 } from '../const'
 
 export default useCommerceCart as UseCart<typeof handler>
@@ -31,10 +31,10 @@ export const handler: any = {
 
       return normalizeCart({
         cart,
-        checkoutId
       })
     } catch (e) {
       Cookies.remove(WIX_CART_ID_COOKIE)
+      Cookies.remove(WIX_CHECKOUT_ID_COOKIE)
     }
   },
   useHook:
