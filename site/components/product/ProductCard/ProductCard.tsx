@@ -8,8 +8,9 @@ import WishlistButton from '@components/wishlist/WishlistButton'
 import usePrice from '@framework/product/use-price'
 import ProductTag from '../ProductTag'
 
-interface Props {
+export interface ProductCardProps {
   className?: string
+  name?: string
   product: Product
   noNameTag?: boolean
   imgProps?: Omit<ImageProps, 'src' | 'layout' | 'placeholder' | 'blurDataURL'>
@@ -18,12 +19,13 @@ interface Props {
 
 const placeholderImg = '/product-img-placeholder.svg'
 
-const ProductCard: FC<Props> = ({
+const ProductCard: FC<ProductCardProps> = ({
   product,
   imgProps,
   className,
   noNameTag = false,
   variant = 'default',
+  name,
 }) => {
   const { price } = usePrice({
     amount: product.price.value,
@@ -36,6 +38,7 @@ const ProductCard: FC<Props> = ({
     { [s.slim]: variant === 'slim', [s.simple]: variant === 'simple' },
     className
   )
+  const productName = name ?? product.name;
 
   return (
     <Link href={`/product/${product.slug}`}>
@@ -43,14 +46,14 @@ const ProductCard: FC<Props> = ({
         {variant === 'slim' && (
           <>
             <div className={s.header}>
-              <span>{product.name}</span>
+              <span>{productName}</span>
             </div>
             {product?.images && (
               <div>
                 <Image
                   quality="85"
                   src={product.images[0]?.url || placeholderImg}
-                  alt={product.name || 'Product Image'}
+                  alt={productName || 'Product Image'}
                   height={320}
                   width={320}
                   layout="fixed"
@@ -73,7 +76,7 @@ const ProductCard: FC<Props> = ({
             {!noNameTag && (
               <div className={s.header}>
                 <h3 className={s.name}>
-                  <span>{product.name}</span>
+                  <span>{productName}</span>
                 </h3>
                 <div className={s.price}>
                   {`${price} ${product.price?.currencyCode}`}
@@ -84,7 +87,7 @@ const ProductCard: FC<Props> = ({
               {product?.images && (
                 <div>
                   <Image
-                    alt={product.name || 'Product Image'}
+                    alt={productName || 'Product Image'}
                     className={s.productImage}
                     src={product.images[0]?.url || placeholderImg}
                     height={540}
@@ -109,14 +112,14 @@ const ProductCard: FC<Props> = ({
               />
             )}
             <ProductTag
-              name={product.name}
+              name={productName}
               price={`${price} ${product.price?.currencyCode}`}
             />
             <div className={s.imageContainer}>
               {product?.images && (
                 <div>
                   <Image
-                    alt={product.name || 'Product Image'}
+                    alt={productName || 'Product Image'}
                     className={s.productImage}
                     src={product.images[0]?.url || placeholderImg}
                     height={540}

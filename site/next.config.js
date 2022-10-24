@@ -10,6 +10,9 @@ const isVendure = provider === '@vercel/commerce-vendure'
 
 module.exports = withCommerceConfig({
   commerce,
+  env: {
+    BUILDER_PUBLIC_KEY: process.env.BUILDER_PUBLIC_KEY,
+  },
   i18n: {
     locales: ['en-US'],
     defaultLocale: 'en-US',

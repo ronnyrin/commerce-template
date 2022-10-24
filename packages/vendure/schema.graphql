@@ -73,7 +73,7 @@ type Query {
   """
   Get a list of Products
   """
-  products(options: ProductListOptions): ProductList!
+  products(options: ProductListOptions): ProductListBlock!
 
   """
   Search Products based on the criteria set by the `SearchInput`
@@ -3531,7 +3531,7 @@ type ProductTranslation {
   description: String!
 }
 
-type ProductList implements PaginatedList {
+type ProductListBlock implements PaginatedList {
   items: [Product!]!
   totalItems: Int!
 }

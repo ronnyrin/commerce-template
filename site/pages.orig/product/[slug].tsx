@@ -7,9 +7,6 @@ import { useRouter } from 'next/router'
 import commerce from '@lib/api/commerce'
 import { Layout } from '@components/common'
 import { ProductView } from '@components/product'
-import { builder, Builder } from '@builder.io/react'
-import builderConfig from '@builder-commerce/config'
-builder.init(builderConfig.apiKey)
 
 export async function getStaticProps({
   params,

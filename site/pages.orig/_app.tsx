@@ -6,23 +6,6 @@ import { FC, useEffect } from 'react'
 import type { AppProps } from 'next/app'
 import { Head } from '@components/common'
 import { ManagedUIContext } from '@components/ui/context'
-import { builder, Builder } from '@builder.io/react'
-import builderConfig from '@builder-commerce/config'
-builder.init(builderConfig.apiKey)
-import { register as registerProductCard } from '@builder-commerce/blocks/ProductCard/ProductCard.builder'
-import { register as registerProductList } from '@builder-commerce/blocks/ProductList/ProductList.builder'
-registerProductCard();
-registerProductList();
-
-Builder.register('insertMenu', {
-  name: 'Wix Stores Components',
-  items: [
-    { name: 'ProductCard' },
-    { name: 'ProductList' },
-    { name: 'CollectionView' },
-    { name: 'ProductsInContext' },
-  ],
-})
 
 const Noop: FC = ({ children }) => <>{children}</>
 
