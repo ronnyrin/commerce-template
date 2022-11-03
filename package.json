@@ -23,8 +23,5 @@
       "pre-commit": "turbo run lint"
     }
   },
-  "packageManager": "yarn@1.22.17",
-  "dependencies": {
-    "@builder.io/react": "^2.0.10"
-  }
+  "packageManager": "yarn@1.22.17"
 }
