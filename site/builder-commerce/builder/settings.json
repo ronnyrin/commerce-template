@@ -1,0 +1,61 @@
+{
+  "settings": {
+    "apps": {
+      "Yotpo": {},
+      "Stamped_io": {},
+      "Rebuy": {},
+      "Postscript": {},
+      "Klaviyo": {}
+    },
+    "plugins": {
+      "@builder.io/plugin-wix-stores": {
+        "storeDomain": "https://ronnyr34.wixsite.com/my-site-165",
+        "hasConnected": true,
+        "publicKey": "dadaw"
+      }
+    },
+    "customComponents": [
+      "ProgressTracker",
+      "JobSelect",
+      "CompanySizeSelect",
+      "UseCaseSelect",
+      "TechStackSelect",
+      "AttributionSelect",
+      "WhyBuilderSelect",
+      "Divider",
+      "Button",
+      "Tooltip",
+      "Material Table",
+      "Material Tabs",
+      "Code Block",
+      "Counter",
+      "CodeCopy",
+      "Material Tooltip",
+      "Signup",
+      "IntegrationPrioritySupportTip",
+      "SqlTable",
+      "IntegrateButton",
+      "Animated Logo",
+      "CollectionView",
+      "ProductsInContext"
+    ]
+  },
+  "type": "space",
+  "siteUrl": "http://localhost:3005",
+  "name": "Next Commerce Template",
+  "loadPlugins": [
+    "http://localhost:1268/plugin.system.js"
+  ],
+  "id": "85739e4837a74f08976d023cf82d0a8a",
+  "@version": 6,
+  "cloneInfo": {
+    "contentIdMap": {
+      "0b1a9ff3271e4f3f92ff0d82d4a4ac7a": "e8ce52922f0d43798a88012df110371c",
+      "4f777d730e364f008c531ca7a4560107": "0fbdcb627dc64358924223df6ac7ea82"
+    },
+    "modelIdMap": {
+      "2a8c65ae125945c59fd5b9ce35b67bf4": "83098f6b0eb54f34a83092f3002fea3d",
+      "61e1473a6bac47dfba91cc489d96b834": "3e6d17d87fa04bb0ab89291effb140b8"
+    }
+  }
+}

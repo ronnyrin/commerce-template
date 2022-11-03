@@ -1,0 +1,194 @@
+{
+  "createdBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
+  "createdDate": 1666517715466,
+  "data": {
+    "themeId": false,
+    "title": "home",
+    "blocks": [
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "id": "builder-9e9df03da5434246a81aaa3cdfcb91c6",
+        "component": {
+          "name": "ProductList",
+          "options": {
+            "useMarquee": false,
+            "variant": "simple",
+            "cardProps": {
+              "imgPriority": true,
+              "imgLayout": "responsive",
+              "imgLoading": "eager",
+              "imgWidth": 540,
+              "imgHeight": 540,
+              "layout": "fixed"
+            },
+            "offset": 0,
+            "limit": 9,
+            "productsList": [
+              {
+                "product": "glasses"
+              },
+              {
+                "product": "watch"
+              },
+              {
+                "product": "i-m-a-product-4"
+              }
+            ],
+            "alternateView": false
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "20px"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "id": "builder-34241e98ed7d4eff869148b15aab3272",
+        "meta": {
+          "previousId": "builder-f0cb3a59734a4b84a6b85d34cb3acbf9"
+        },
+        "component": {
+          "name": "CollectionView",
+          "options": {
+            "useMarquee": true,
+            "variant": "slim",
+            "cardProps": {
+              "imgPriority": true,
+              "imgLayout": "responsive",
+              "imgLoading": "eager",
+              "imgWidth": 540,
+              "imgHeight": 540,
+              "layout": "fixed"
+            },
+            "offset": 0,
+            "limit": 10,
+            "collectionId": "00000000-000000-000000-000000000001",
+            "alternateView": true
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "1px"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "id": "builder-61f308d87fdf44549478f93dd7f66cab",
+        "meta": {
+          "previousId": "builder-80361aa253864271b944e3bff8f759c6"
+        },
+        "component": {
+          "name": "Text",
+          "options": {
+            "text": "<style>\n\t.Hero_root___xA5j {\n\t  margin-left: auto;\n\t  margin-right: auto;\n\t  display: flex;\n\t  flex-direction: column;\n\t  padding-top: 4rem;\n\t  padding-bottom: 4rem\n\t}\n\n\t.Hero_title__Q0tn0 {\n\t  font-size: 2.25rem;\n\t  line-height: 2.5rem;\n\t  font-weight: 800;\n\t  line-height: 1;\n\t  letter-spacing: -0.025em;\n\t  color: var(--accent-0)\n\t}\n\n\t.Hero_description__qhVfY {\n\t  margin-top: 1rem;\n\t  margin-bottom: 0.25rem;\n\t  font-size: 1.25rem;\n\t  line-height: 2rem;\n\t  color: var(--accent-2)\n\t}\n\n\t@media (min-width: 1024px) {\n\n\t  .Hero_description__qhVfY {\n\t    max-width: 56rem\n\t  }\n\t  .Hero_root___xA5j {\n\t    flex-direction: row;\n\t    align-items: flex-start;\n\t    justify-content: center;\n\t    padding-top: 8rem;\n\t    padding-bottom: 8rem\n\t  }\n\t  .Hero_title__Q0tn0 {\n\t    margin-top: -0.75rem;\n\t    max-width: 36rem;\n\t    text-align: right;\n\t    font-size: 3rem;\n\t    line-height: 1;\n\t    line-height: 3.5rem\n\t  }\n\t  .Hero_description__qhVfY {\n\t    margin-top: 0px;\n\t    margin-left: 1.5rem\n\t  }\n\t}\n\n\t@media (min-width: 1280px) {\n\t  .Hero_title__Q0tn0 {\n\t    font-size: 3.75rem;\n\t    line-height: 1\n\t  }\n\t}\n</style>\n<div class=\"bg-accent-9 border-b border-t border-accent-2\">\n  <div class=\"mx-auto max-w-7xl px-6 w-full\">\n    <div class=\"Hero_root___xA5j\">\n      <h2 class=\"Hero_title__Q0tn0\">Dessert dragée halvah croissant</h2>\n      <div class=\"Hero_description__qhVfY\">\n        <p>\n          Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet\n          carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat\n          cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll\n          cheesecake pie carrot cake.\n        </p>\n        <a\n          class=\"\n            flex\n            items-center\n            text-accent-0\n            pt-3\n            font-bold\n            hover:underline\n            cursor-pointer\n            w-max-content\n          \"\n          href=\"/\"\n          >Read it here<svg\n            width=\"20\"\n            height=\"24\"\n            viewBox=\"0 0 24 24\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            xmlns=\"http://www.w3.org/2000/svg\"\n            heigh=\"20\"\n            class=\"ml-1\"\n          >\n            <path\n              d=\"M5 12H19\"\n              stroke-width=\"1.5\"\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n            ></path>\n            <path\n              d=\"M12 5L19 12L12 19\"\n              stroke-width=\"1.5\"\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n            ></path></svg\n        ></a>\n      </div>\n    </div>\n  </div>\n</div>\n"
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "-1px",
+            "lineHeight": "normal",
+            "height": "auto",
+            "paddingTop": "0px"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "id": "builder-dec831e89d9f484783cce3646f11445d",
+        "meta": {
+          "previousId": "builder-f0cb3a59734a4b84a6b85d34cb3acbf9"
+        },
+        "component": {
+          "name": "CollectionView",
+          "options": {
+            "useMarquee": true,
+            "variant": "slim",
+            "cardProps": {
+              "imgPriority": true,
+              "imgLayout": "responsive",
+              "imgLoading": "eager",
+              "imgWidth": 540,
+              "imgHeight": 540,
+              "layout": "fixed"
+            },
+            "offset": 0,
+            "limit": 10,
+            "collectionId": "54e98531-f749-0bb9-bd85-34cc10cc9974",
+            "alternateView": true
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "1px"
+          }
+        }
+      }
+    ],
+    "url": "/",
+    "state": {
+      "deviceSize": "large",
+      "location": {
+        "path": "",
+        "query": {}
+      }
+    }
+  },
+  "id": "0fbdcb627dc64358924223df6ac7ea82",
+  "lastUpdatedBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
+  "meta": {
+    "componentsUsed": {
+      "CollectionView": 2,
+      "ProductList": 1
+    },
+    "hasLinks": false,
+    "kind": "page",
+    "lastPreviewUrl": "http://localhost:3005/?builder.space=85739e4837a74f08976d023cf82d0a8a&builder.cachebust=true&builder.preview=page&builder.noCache=true&__builder_editing__=true&builder.overrides.page=4f777d730e364f008c531ca7a4560107&builder.overrides.4f777d730e364f008c531ca7a4560107=4f777d730e364f008c531ca7a4560107&builder.overrides.page:/=4f777d730e364f008c531ca7a4560107&builder.options.includeRefs=true",
+    "needsHydration": false
+  },
+  "modelId": "3e6d17d87fa04bb0ab89291effb140b8",
+  "name": "home",
+  "published": "published",
+  "query": [
+    {
+      "@type": "@builder.io/core:Query",
+      "operator": "is",
+      "property": "urlPath",
+      "value": "/"
+    }
+  ],
+  "testRatio": 1,
+  "variations": {},
+  "lastUpdated": 1667459240028,
+  "firstPublished": 1666517911586,
+  "rev": "5qt0nqwyol9",
+  "@originOrg": "85739e4837a74f08976d023cf82d0a8a",
+  "@originContentId": "4f777d730e364f008c531ca7a4560107",
+  "@originModelId": "61e1473a6bac47dfba91cc489d96b834"
+}

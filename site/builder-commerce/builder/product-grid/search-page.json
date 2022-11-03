@@ -1,0 +1,91 @@
+{
+  "createdBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
+  "createdDate": 1666596499610,
+  "data": {
+    "blocks": [
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "bindings": {
+          "component.options.products": "state.products"
+        },
+        "id": "builder-e7bd52ba810d4f1ba5ff8421848f033d",
+        "component": {
+          "name": "ProductsInContext",
+          "options": {
+            "offset": 0,
+            "limit": 50,
+            "useMarquee": false,
+            "alternateView": false
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "20px"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "id": "builder-12b4fdf2f7374713a67dc3373a5867f5",
+        "component": {
+          "name": "CollectionView",
+          "options": {
+            "offset": 0,
+            "limit": 9,
+            "useMarquee": false,
+            "alternateView": "default",
+            "collectionId": "54e98531-f749-0bb9-bd85-34cc10cc9974"
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "20px"
+          }
+        }
+      }
+    ],
+    "state": {
+      "deviceSize": "large",
+      "location": {
+        "path": "",
+        "query": {}
+      }
+    }
+  },
+  "id": "e8ce52922f0d43798a88012df110371c",
+  "lastUpdatedBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
+  "meta": {
+    "componentsUsed": {
+      "CollectionView": 1,
+      "ProductsInContext": 1
+    },
+    "hasLinks": false,
+    "kind": "component",
+    "lastPreviewUrl": "http://localhost:3005/search?builder.space=85739e4837a74f08976d023cf82d0a8a&builder.cachebust=true&builder.preview=product-grid&builder.noCache=true&__builder_editing__=true&builder.overrides.product-grid=0b1a9ff3271e4f3f92ff0d82d4a4ac7a&builder.overrides.0b1a9ff3271e4f3f92ff0d82d4a4ac7a=0b1a9ff3271e4f3f92ff0d82d4a4ac7a",
+    "needsHydration": false
+  },
+  "modelId": "83098f6b0eb54f34a83092f3002fea3d",
+  "name": "Search Page",
+  "published": "published",
+  "query": [],
+  "testRatio": 1,
+  "variations": {},
+  "lastUpdated": 1667382492809,
+  "firstPublished": 1666596930455,
+  "rev": "5m4i9ztmfqi",
+  "@originOrg": "85739e4837a74f08976d023cf82d0a8a",
+  "@originContentId": "0b1a9ff3271e4f3f92ff0d82d4a4ac7a",
+  "@originModelId": "2a8c65ae125945c59fd5b9ce35b67bf4"
+}
