@@ -116,27 +116,15 @@
       {
         "@type": "@builder.io/sdk:Element",
         "@version": 2,
-        "id": "builder-dec831e89d9f484783cce3646f11445d",
-        "meta": {
-          "previousId": "builder-f0cb3a59734a4b84a6b85d34cb3acbf9"
-        },
+        "id": "builder-4a7d9153ca6948358a7b7ca3ca704b06",
         "component": {
           "name": "CollectionView",
           "options": {
-            "useMarquee": true,
-            "variant": "slim",
-            "cardProps": {
-              "imgPriority": true,
-              "imgLayout": "responsive",
-              "imgLoading": "eager",
-              "imgWidth": 540,
-              "imgHeight": 540,
-              "layout": "fixed"
-            },
             "offset": 0,
-            "limit": 10,
-            "collectionId": "54e98531-f749-0bb9-bd85-34cc10cc9974",
-            "alternateView": true
+            "limit": 9,
+            "useMarquee": true,
+            "alternateView": true,
+            "collectionId": "54e98531-f749-0bb9-bd85-34cc10cc9974"
           }
         },
         "responsiveStyles": {
@@ -146,7 +134,7 @@
             "position": "relative",
             "flexShrink": "0",
             "boxSizing": "border-box",
-            "marginTop": "1px"
+            "marginTop": "20px"
           }
         }
       }
@@ -160,7 +148,7 @@
       }
     }
   },
-  "id": "0fbdcb627dc64358924223df6ac7ea82",
+  "id": "653d2c51703643209f2beb03530f4a58",
   "lastUpdatedBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
   "meta": {
     "componentsUsed": {
@@ -172,7 +160,7 @@
     "lastPreviewUrl": "http://localhost:3005/?builder.space=85739e4837a74f08976d023cf82d0a8a&builder.cachebust=true&builder.preview=page&builder.noCache=true&__builder_editing__=true&builder.overrides.page=4f777d730e364f008c531ca7a4560107&builder.overrides.4f777d730e364f008c531ca7a4560107=4f777d730e364f008c531ca7a4560107&builder.overrides.page:/=4f777d730e364f008c531ca7a4560107&builder.options.includeRefs=true",
     "needsHydration": false
   },
-  "modelId": "3e6d17d87fa04bb0ab89291effb140b8",
+  "modelId": "eab3104743d746f2bd25f7cf7bdd0199",
   "name": "home",
   "published": "published",
   "query": [
@@ -185,9 +173,9 @@
   ],
   "testRatio": 1,
   "variations": {},
-  "lastUpdated": 1667459240028,
+  "lastUpdated": 1667486075837,
   "firstPublished": 1666517911586,
-  "rev": "5qt0nqwyol9",
+  "rev": "v3ghi5m9p7",
   "@originOrg": "85739e4837a74f08976d023cf82d0a8a",
   "@originContentId": "4f777d730e364f008c531ca7a4560107",
   "@originModelId": "61e1473a6bac47dfba91cc489d96b834"
