@@ -6,6 +6,7 @@ const LazyProductGrid = dynamic(
   () => import(`@builder-commerce/blocks/ProductList/ProductList.block`),
   { ssr: true }
 )
+import builderConfig from '@builder-commerce/config'
 
 export const productGridSchema: Input[] = [
   {
@@ -34,7 +35,6 @@ export const register = () => {
           name: 'offset',
           type: 'number',
           defaultValue: 0,
-          hideFromUI: true,
         },
         {
           name: 'limit',
@@ -48,46 +48,52 @@ export const register = () => {
         },
       },
     },
-    ['product-grid', 'theme']
+    ['product-grid', 'theme', 'products-page']
   );
-  Builder.registerComponent(LazyProductGrid, {
-    name: 'CollectionView',
-    image: 'https://unpkg.com/css.gg@2.0.0/icons/svg/play-list-add.svg',
-    description: 'Pick products to be presented as a list or marquee',
-    inputs: [
-      {
-        name: 'collectionId',
-        friendlyName: 'Collection',
-        type: 'WixStoresCollectionHandle',
-      },
-      {
-        name: 'offset',
-        type: 'number',
-        defaultValue: 0,
-      },
-      {
-        name: 'limit',
-        type: 'number',
-        defaultValue: 9,
-      },
-    ].concat(productGridSchema as any),
-  })
+  if (builderConfig.collectionHandleName) {
+    Builder.registerComponent(LazyProductGrid, {
+      name: 'CollectionView',
+      image: 'https://unpkg.com/css.gg@2.0.0/icons/svg/play-list-add.svg',
+      description: 'Pick products to be presented as a list or marquee',
+      inputs: [
+        {
+          name: 'collectionId',
+          friendlyName: 'Collection',
+          type: builderConfig.collectionHandleName,
+        },
+        {
+          name: 'offset',
+          type: 'number',
+          defaultValue: 0,
+        },
+        {
+          name: 'limit',
+          type: 'number',
+          defaultValue: 9,
+        },
+      ].concat(productGridSchema as any),
+    })
+  }
 
-  Builder.registerComponent(LazyProductGrid, {
-    name: 'ProductList',
-    image: 'https://unpkg.com/css.gg@2.0.0/icons/svg/play-list-add.svg',
-    description: 'Pick products to be presented as a list or marquee',
-    inputs: [
-      {
-        name: 'productsList',
-        type: 'list',
-        subFields: [
-          {
-            name: 'product',
-            type: `WixStoresProductHandle`,
-          },
-        ],
-      },
-    ].concat(productGridSchema as any),
-  })
+  if (builderConfig.productHandleName) {
+    Builder.registerComponent(LazyProductGrid, {
+      name: 'ProductList',
+      image: 'https://unpkg.com/css.gg@2.0.0/icons/svg/play-list-add.svg',
+      description: 'Pick products to be presented as a list or marquee',
+      inputs: [
+        {
+          name: 'productsList',
+          type: 'list',
+          subFields: [
+            {
+              name: 'product',
+              type: builderConfig.productHandleName,
+            },
+          ],
+        },
+      ].concat(productGridSchema as any),
+    })
+  }
+
+
 }

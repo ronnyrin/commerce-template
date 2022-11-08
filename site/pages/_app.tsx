@@ -15,7 +15,7 @@ registerProductCard();
 registerProductList();
 
 Builder.register('insertMenu', {
-  name: 'Wix Stores Components',
+  name: 'Commerce Components',
   items: [
     { name: 'ProductCard' },
     { name: 'ProductList' },

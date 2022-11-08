@@ -26,36 +26,30 @@
       "ProductsInContext"
     ],
     "apps": {
-      "Stamped_io": {},
       "Yotpo": {},
       "Klaviyo": {},
       "Postscript": {},
+      "Stamped_io": {},
       "Rebuy": {}
     },
-    "plugins": {
-      "@builder.io/plugin-wix-stores": {
-        "publicKey": "dadaw",
-        "storeDomain": "https://ronnyr34.wixsite.com/my-site-165",
-        "hasConnected": true
-      }
-    }
+    "plugins": {}
   },
   "type": "space",
   "siteUrl": "http://localhost:3005",
   "name": "Next Commerce Template",
-  "loadPlugins": [
-    "http://localhost:1268/plugin.system.js"
-  ],
+  "loadPlugins": [],
   "id": "85739e4837a74f08976d023cf82d0a8a",
   "@version": 6,
   "cloneInfo": {
     "contentIdMap": {
-      "0b1a9ff3271e4f3f92ff0d82d4a4ac7a": "8a3d51cb2d80437e92a738a8dc714c2d",
-      "4f777d730e364f008c531ca7a4560107": "653d2c51703643209f2beb03530f4a58"
+      "c5a2edd9ee00416980be2b954d11206f": "a9ff6ac1b17c47eca49808965e9bc70f",
+      "0b1a9ff3271e4f3f92ff0d82d4a4ac7a": "fa2ec3f8a4f8477a9e7a4a370aff2223",
+      "504f7c106b5a4f40992e91ebd871ac8f": "d64416ad6b0b475e9436f82e5f4dffeb"
     },
     "modelIdMap": {
-      "2a8c65ae125945c59fd5b9ce35b67bf4": "e0318057e4504c4ba672e9afc782ae40",
-      "61e1473a6bac47dfba91cc489d96b834": "eab3104743d746f2bd25f7cf7bdd0199"
+      "1644327a99834e4a86f4f36133457179": "f17d31abd7904c0b8a78d221f314fcfb",
+      "2a8c65ae125945c59fd5b9ce35b67bf4": "1d2de35d7a644f3ca20342ae0b88ee7c",
+      "61e1473a6bac47dfba91cc489d96b834": "58f620ca74bb4bb3a4e4354b1db8bbc1"
     }
   }
 }

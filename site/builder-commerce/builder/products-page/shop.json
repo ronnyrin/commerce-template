@@ -1,0 +1,153 @@
+{
+  "createdBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
+  "createdDate": 1667922971324,
+  "data": {
+    "themeId": false,
+    "title": "shop",
+    "blocks": [
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "bindings": {
+          "component.options.products": "state.products"
+        },
+        "id": "builder-92731f9dac7946c3871c64ebe11413e7",
+        "component": {
+          "name": "ProductsInContext",
+          "options": {
+            "offset": 0,
+            "limit": 3,
+            "useMarquee": false,
+            "alternateView": false
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "20px"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "bindings": {
+          "component.options.products": "state.products"
+        },
+        "id": "builder-dc036c500f8041189327e96ea13a99f4",
+        "component": {
+          "name": "ProductsInContext",
+          "options": {
+            "offset": 3,
+            "limit": 5,
+            "useMarquee": true,
+            "alternateView": true
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "-1px"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "id": "builder-c4a15b36bc2a4e00a6aa7548ae85f510",
+        "component": {
+          "name": "Text",
+          "options": {
+            "text": "<style>\n  .Hero_root___xA5j {\n    margin-left: auto;\n    margin-right: auto;\n    display: flex;\n    flex-direction: column;\n    padding-top: 4rem;\n    padding-bottom: 4rem\n  }\n\n  .Hero_title__Q0tn0 {\n    font-size: 2.25rem;\n    line-height: 2.5rem;\n    font-weight: 800;\n    line-height: 1;\n    letter-spacing: -0.025em;\n    color: var(--accent-0)\n  }\n\n  .Hero_description__qhVfY {\n    margin-top: 1rem;\n    margin-bottom: 0.25rem;\n    font-size: 1.25rem;\n    line-height: 2rem;\n    color: var(--accent-2)\n  }\n\n  @media (min-width: 1024px) {\n\n    .Hero_description__qhVfY {\n      max-width: 56rem\n    }\n    .Hero_root___xA5j {\n      flex-direction: row;\n      align-items: flex-start;\n      justify-content: center;\n      padding-top: 8rem;\n      padding-bottom: 8rem\n    }\n    .Hero_title__Q0tn0 {\n      margin-top: -0.75rem;\n      max-width: 36rem;\n      text-align: right;\n      font-size: 3rem;\n      line-height: 1;\n      line-height: 3.5rem\n    }\n    .Hero_description__qhVfY {\n      margin-top: 0px;\n      margin-left: 1.5rem\n    }\n  }\n\n  @media (min-width: 1280px) {\n    .Hero_title__Q0tn0 {\n      font-size: 3.75rem;\n      line-height: 1\n    }\n  }\n</style>\n<div class=\"bg-accent-9 border-b border-t border-accent-2\">\n  <div class=\"mx-auto max-w-7xl px-6 w-full\">\n    <div class=\"Hero_root___xA5j\">\n      <h2 class=\"Hero_title__Q0tn0\">Dessert dragée halvah croissant</h2>\n      <div class=\"Hero_description__qhVfY\">\n        <p>\n          Cupcake ipsum dolor sit amet lemon drops pastry cotton candy. Sweet\n          carrot cake macaroon bonbon croissant fruitcake jujubes macaroon oat\n          cake. Soufflé bonbon caramels jelly beans. Tiramisu sweet roll\n          cheesecake pie carrot cake.\n        </p>\n        <a\n          class=\"\n            flex\n            items-center\n            text-accent-0\n            pt-3\n            font-bold\n            hover:underline\n            cursor-pointer\n            w-max-content\n          \"\n          href=\"/\"\n          >Read it here<svg\n            width=\"20\"\n            height=\"24\"\n            viewBox=\"0 0 24 24\"\n            fill=\"none\"\n            stroke=\"currentColor\"\n            xmlns=\"http://www.w3.org/2000/svg\"\n            heigh=\"20\"\n            class=\"ml-1\"\n          >\n            <path\n              d=\"M5 12H19\"\n              stroke-width=\"1.5\"\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n            ></path>\n            <path\n              d=\"M12 5L19 12L12 19\"\n              stroke-width=\"1.5\"\n              stroke-linecap=\"round\"\n              stroke-linejoin=\"round\"\n            ></path></svg\n        ></a>\n      </div>\n    </div>\n  </div>\n</div>\n"
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "-1px",
+            "lineHeight": "normal",
+            "height": "auto"
+          }
+        }
+      },
+      {
+        "@type": "@builder.io/sdk:Element",
+        "@version": 2,
+        "bindings": {
+          "component.options.products": "state.products"
+        },
+        "id": "builder-16154bf915c94c7786b5dd08b673ed36",
+        "component": {
+          "name": "ProductsInContext",
+          "options": {
+            "offset": 10,
+            "limit": 50,
+            "useMarquee": true,
+            "alternateView": "default"
+          }
+        },
+        "responsiveStyles": {
+          "large": {
+            "display": "flex",
+            "flexDirection": "column",
+            "position": "relative",
+            "flexShrink": "0",
+            "boxSizing": "border-box",
+            "marginTop": "-1px"
+          }
+        }
+      }
+    ],
+    "url": "/shop",
+    "state": {
+      "deviceSize": "large",
+      "location": {
+        "path": "",
+        "query": {}
+      }
+    }
+  },
+  "folders": [],
+  "id": "a9ff6ac1b17c47eca49808965e9bc70f",
+  "lastUpdatedBy": "sx8yWkSeuOOt8KR7iLlKVfhAks23",
+  "meta": {
+    "componentsUsed": {
+      "ProductsInContext": 3
+    },
+    "hasLinks": false,
+    "kind": "page",
+    "lastPreviewUrl": "http://localhost:3005/shop?builder.space=85739e4837a74f08976d023cf82d0a8a&builder.cachebust=true&builder.preview=products-page&builder.noCache=true&__builder_editing__=true&builder.overrides.products-page=c5a2edd9ee00416980be2b954d11206f&builder.overrides.c5a2edd9ee00416980be2b954d11206f=c5a2edd9ee00416980be2b954d11206f&builder.options.includeRefs=true",
+    "needsHydration": false
+  },
+  "modelId": "f17d31abd7904c0b8a78d221f314fcfb",
+  "name": "shop",
+  "published": "published",
+  "query": [
+    {
+      "@type": "@builder.io/core:Query",
+      "operator": "is",
+      "property": "urlPath",
+      "value": "/shop"
+    }
+  ],
+  "testRatio": 1,
+  "variations": {},
+  "lastUpdated": 1667923287749,
+  "firstPublished": 1667923034570,
+  "rev": "rowweoyunl",
+  "@originOrg": "85739e4837a74f08976d023cf82d0a8a",
+  "@originContentId": "c5a2edd9ee00416980be2b954d11206f",
+  "@originModelId": "1644327a99834e4a86f4f36133457179"
+}

@@ -12,6 +12,8 @@ module.exports = withCommerceConfig({
   commerce,
   env: {
     BUILDER_PUBLIC_KEY: process.env.BUILDER_PUBLIC_KEY,
+    BUILDER_PLUGIN_COLLECTION_HANDLE: process.env.BUILDER_PLUGIN_COLLECTION_HANDLE,
+    BUILDER_PLUGIN_PRODUCT_HANDLE: process.env.BUILDER_PLUGIN_PRODUCT_HANDLE,
   },
   i18n: {
     locales: ['en-US'],

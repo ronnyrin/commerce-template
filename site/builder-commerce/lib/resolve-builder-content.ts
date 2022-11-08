@@ -7,6 +7,7 @@ builder.init(builderConfig.apiKey)
 export async function resolveBuilderContent(
   modelName: string,
   targetingAttributes?: any,
+  urlPath?: string,
   preview?: boolean,
   locale?: string,
   locales?: string[],
@@ -17,6 +18,7 @@ export async function resolveBuilderContent(
       userAttributes: targetingAttributes,
       includeRefs: true,
       cachebust: true,
+      url: urlPath,
     } as any)
     .toPromise()
 
